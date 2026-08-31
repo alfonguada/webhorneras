@@ -32,11 +32,10 @@ class Config:
     MAILCHIMP_LIST_ID = os.environ.get("MAILCHIMP_LIST_ID", "")
     MAILCHIMP_SERVER_PREFIX = os.environ.get("MAILCHIMP_SERVER_PREFIX", "")
 
-    # Motor de reservas AvaiBook: código de propiedad usado en el CTA
-    # "¡RESERVA YA!" de cada apartamento (mismo código en las 5 fichas
-    # originales; AvaiBook resuelve la unidad concreta dentro de su propio
-    # flujo).
-    AVAIBOOK_COD_ALOJAMIENTO = os.environ.get("AVAIBOOK_COD_ALOJAMIENTO", "370830")
+    # Motor de reservas AvaiBook: el código de propiedad para el CTA
+    # "¡RESERVA YA!" es distinto por apartamento (ver
+    # app/data/apartamentos.py -> avaibook_cod_alojamiento), no una
+    # constante global.
     # Widget general de disponibilidad (home / disponibilidad)
     AVAIBOOK_WIDGET_ID = os.environ.get("AVAIBOOK_WIDGET_ID", "95614")
     AVAIBOOK_WIDGET_TOKEN = os.environ.get(

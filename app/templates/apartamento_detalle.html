@@ -43,13 +43,15 @@
 
       <div class="price" style="font-size:1.4rem;margin:18px 0;">{{ apto.precio_desde }}€ <span>/ día desde</span></div>
       <a class="btn btn-accent" target="_blank" rel="noopener"
-         href="https://www.avaibook.com/reservas/nueva_reserva.php?cod_alojamiento={{ config.AVAIBOOK_COD_ALOJAMIENTO }}&adults=1&children=0&babies=0&lang=es">
+         href="https://www.avaibook.com/reservas/nueva_reserva.php?cod_alojamiento={{ apto.avaibook_cod_alojamiento }}&adults=1&children=0&babies=0&lang=es">
         ¡Reserva ya!
       </a>
 
       <div class="booking-widgets">
         <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id={{ apto.avaibook_widget_mini }}&lang=ES"
                 style="width:100%;max-width:500px;height:355px;" loading="lazy" title="Calendario de disponibilidad — {{ apto.nombre }}"></iframe>
+        <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id={{ apto.avaibook_widget_full }}&lang=ES"
+                style="width:100%;max-width:650px;height:390px;" loading="lazy" title="Reserva — {{ apto.nombre }}"></iframe>
       </div>
     </div>
   </div>

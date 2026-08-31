@@ -1,7 +1,11 @@
 # Datos de los 5 apartamentos, recuperados del sitio WordPress archivado
 # (Wayback Machine, copias previas al compromiso de seguridad de sep-2025).
-# Los IDs de widget de AvaiBook son los que estaban embebidos en cada
-# ficha; conviene confirmarlos con el propietario antes de publicar.
+#
+# avaibook_cod_alojamiento: el WordPress original enlazaba el botón "¡RESERVA
+# YA!" de las 5 fichas al mismo código (370830, el de Petronila) — un bug
+# real del sitio, no un dato correcto. Se obtuvieron los códigos correctos
+# de cada apartamento en vivo desde bookonline.pro/es/properties/95614
+# (el listado público real de Las Horneras en la plataforma de AvaiBook).
 
 APARTAMENTOS = [
     {
@@ -40,6 +44,7 @@ APARTAMENTOS = [
         ],
         "avaibook_widget_full": "141897",
         "avaibook_widget_mini": "141971",
+        "avaibook_cod_alojamiento": "371207",
     },
     {
         "slug": "petronila",
@@ -71,6 +76,7 @@ APARTAMENTOS = [
         ],
         "avaibook_widget_full": "141898",
         "avaibook_widget_mini": "141967",
+        "avaibook_cod_alojamiento": "370830",
     },
     {
         "slug": "florencia",
@@ -98,6 +104,7 @@ APARTAMENTOS = [
         ],
         "avaibook_widget_full": "141899",
         "avaibook_widget_mini": "141968",
+        "avaibook_cod_alojamiento": "370831",
     },
     {
         "slug": "martina",
@@ -127,6 +134,7 @@ APARTAMENTOS = [
         ],
         "avaibook_widget_full": "141901",
         "avaibook_widget_mini": "141969",
+        "avaibook_cod_alojamiento": "371205",
     },
     {
         "slug": "hipolita",
@@ -154,6 +162,7 @@ APARTAMENTOS = [
         ],
         "avaibook_widget_full": "141902",
         "avaibook_widget_mini": "141970",
+        "avaibook_cod_alojamiento": "371206",
     },
 ]
 
