@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Contacto - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Contacta con Las Horneras de Cobeta: Calle Castillo, s/n, 19443 Cobeta (Guadalajara). Tel. +34 621 240 349.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Las Horneras de Cobeta &middot; Apartamentos Rurales</span>
+    <h1>Contacto</h1>
+    <p>+34 {{ config.TELEFONO_VISIBLE }} &middot; {{ config.EMAIL_INFO }}</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container two-col" style="align-items:flex-start;">
+    <form method="post" novalidate>
+      {{ form.hidden_tag() }}
+      <div class="field">
+        {{ form.nombre.label }}
+        {{ form.nombre(placeholder="Tu nombre") }}
+        {% for error in form.nombre.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field">
+        {{ form.correo.label }}
+        {{ form.correo(placeholder="tucorreo@ejemplo.es") }}
+        {% for error in form.correo.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field">
+        {{ form.concepto.label }}
+        {{ form.concepto(placeholder="Asunto") }}
+      </div>
+      <div class="field">
+        {{ form.contenido.label }}
+        {{ form.contenido(placeholder="¿En qué podemos ayudarte? (opcional)") }}
+        {% for error in form.contenido.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+      </div>
+      <button class="btn btn-accent" type="submit">Enviar</button>
+    </form>
+
+    <div>
+      <h3>Ubicación</h3>
+      <p>Las Horneras de Cobeta<br>Apartamentos Rurales<br>Calle Horno, s/n<br>19443 Cobeta, Guadalajara (España)</p>
+      <div class="round-block" style="background:var(--offwhite); border:1px solid var(--line); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:var(--text-soft); text-align:center; padding:20px;">
+        Mapa de ubicación<br>(pendiente de embeber Google Maps)
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

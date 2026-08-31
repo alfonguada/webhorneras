@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Régimen Interno - Las Horneras de Cobeta{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Régimen Interno</h1></div></section>
+<section class="block">
+  <div class="container legal-content">
+
+    <h2>Normas generales</h2>
+    <ul>
+      <li>Los clientes se encontrarán el establecimiento en perfectas condiciones. A su llegada se les acompañará y se les enseñarán todas las instalaciones de la casa.</li>
+      <li>No se podrá exceder nunca la capacidad contratada del alojamiento. Si se quisiera alojar un mayor número de personas de las pactadas, deberá hacerse previa solicitud y autorización de la propiedad.</li>
+      <li>No está permitida la estancia o pernocta de otras personas que no sean las que han alquilado su estancia, salvo autorización expresa del propietario.</li>
+      <li>Si se sobrepasa el límite de personas sin la autorización pertinente, se entenderá que se ha producido un incumplimiento grave del contrato y nos reservamos el derecho a solicitar inmediatamente el desalojo de la casa sin que proceda ningún tipo de compensación económica.</li>
+      <li>Los ocupantes no podrán realizar en los apartamentos actividades molestas, insalubres, nocivas, peligrosas o ilícitas.</li>
+      <li>El establecimiento tiene reservado el derecho de admisión.</li>
+      <li>El alojamiento no se hace responsable de las posibles pérdidas o sustracciones de dinero u objetos de valor que se encuentren en las instalaciones.</li>
+      <li>El cliente es consciente de que se aloja en una casa para hacer Turismo Rural, para su disfrute, descanso y acomodo. En ningún caso puede ser usada como sala de fiestas, local de baile o instalación destinada al jolgorio. No se admiten despedidas de soltero/a.</li>
+      <li>Existen hojas de reclamaciones a disposición del cliente.</li>
+    </ul>
+
+    <h2>Check-in y Check-out</h2>
+    <p>El horario de entrada se establece a las <strong>16 horas</strong> y el de salida a las <strong>12 horas</strong>, salvo pacto de lo contrario. Existe la posibilidad de realizar Auto check-in, rellenando todos los documentos necesarios previa a la llegada al alojamiento.</p>
+    <p>Una vez en el alojamiento se rellenará la Ficha de Admisión con los datos solicitados por la Guardia Civil, para todas las personas mayores de 16 años, según el art. 1 del Decreto 1513/1959 de 18 de Agosto.</p>
+    <p>Previo a su llegada, el cliente deberá comunicar al alojamiento el horario exacto de llegada. La llave puede ser tanto digital como física.</p>
+
+    <h2>Reservas y cancelaciones</h2>
+    <p>La reserva será efectiva cuando el cliente deposite el importe solicitado (100% del total de la reserva).</p>
+    <ul>
+      <li>Cancelación entre <strong>30 y 15 días</strong> antes: se devuelve el <strong>100%</strong> del importe.</li>
+      <li>Cancelación entre <strong>15 y 6 días</strong> antes: se devuelve el <strong>50%</strong> del importe.</li>
+      <li>Cancelación con <strong>menos de 5 días</strong> de antelación: no se devuelve ningún importe.</li>
+      <li>En temporada alta (puentes, Navidad y Nochevieja, Semana Santa u otras festividades nacionales), el depósito no es reembolsable.</li>
+      <li>Si la cancelación se debe a causas de fuerza mayor por parte del promotor del negocio, se devolverá el importe íntegro.</li>
+    </ul>
+
+    <h2>Mascotas</h2>
+    <p>Se admiten animales domésticos solamente en algunas unidades alojativas y previo acuerdo con Las Horneras. La responsabilidad civil derivada de las acciones del animal recae siempre sobre su dueño. Por razones de bioseguridad, los perros que participen en cualquier modalidad de caza tienen prohibido el acceso.</p>
+
+    <h2>Zonas comunes</h2>
+    <p>Se ruega respetar la hora de siesta (15:00 a 17:00h) y no hacer ruido antes de las 10:00h ni después de las 24:00h. La zona del patio es zona de fumadores. Limpieza de zonas comunes de 11:00 a 14:00 horas.</p>
+
+    <h2>Números de interés y emergencias</h2>
+    <ul>
+      <li>Gestora del alojamiento (Soraya): 665 52 87 35</li>
+      <li>Teléfono del alojamiento: {{ config.TELEFONO_VISIBLE }}</li>
+      <li>Ayuntamiento de Cobeta: 949 83 55 00</li>
+      <li>Guardia Civil, Puesto de Zaorejas: 949 81 61 05</li>
+      <li>Centro de Salud y Urgencias de Molina de Aragón: 949 83 19 54</li>
+      <li>Centro de Salud y Urgencias de Maranchón: 949 83 97 08</li>
+      <li>Emergencia Guardia Civil: 062 &middot; Emergencias: 112 &middot; Emergencias Sanitarias CLM: 900 122 122</li>
+      <li>Farmacia Molina de Aragón: 949 83 00 28 / 949 83 04 28 &middot; Farmacia Maranchón: 949 83 96 63</li>
+      <li>Tienda de Cobeta «Macu»: 949 83 50 06 &middot; Oficina Turismo Molina de Aragón: 949 83 20 98</li>
+      <li>Empresa Ecoturismo El Observatorio: 611 69 97 76 &middot; info@elobservario.com</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

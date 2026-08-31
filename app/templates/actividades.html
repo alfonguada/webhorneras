@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Actividades - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Actividades en el Alto Tajo: visita guiada a Cobeta, resinero por un día, salida al campo y el retorno de los grandes herbívoros.{% endblock %}
+
+{% block content %}
+{% set actividades = [
+  {"nombre": "Visita Guiada a la Villa de Cobeta", "resumen": "Un viaje fascinante de 2 horas por las callejuelas empedradas de este pintoresco pueblo del Alto Tajo.", "detalle": "¿Te apasiona la historia y la cultura? ¿Te apetece perderte por un pueblo con encanto y descubrir sus secretos? Entonces no te pierdas nuestra visita guiada por la Villa de Cobeta, un viaje fascinante de 2 horas por las callejuelas empedradas de este pintoresco pueblo del Alto Tajo.", "url": "https://elobservario.com/actividad/visita-guiada-a-la-villa-de-cobeta/"},
+  {"nombre": "Resinero por un día", "resumen": "Descubre el fascinante mundo del resinero en una jornada única en Cobeta, Guadalajara.", "detalle": "En este rincón encantador, te invitamos a vivir una experiencia inolvidable: conviértete en un resinero por un día y sumérgete en los misterios, la historia y la apasionante dedicación que rodea este ancestral oficio.", "url": "https://elobservario.com/actividad/resinero-por-un-dia/"},
+  {"nombre": "Salida al Campo", "resumen": "Descubre la belleza y la diversidad del Alto Tajo en una experiencia de 3 horas.", "detalle": "Descubre el Alto Tajo es una salida al campo adaptada a cada estación del año que te permitirá explorar diferentes paisajes, observar aves y fauna variada, y visitar parajes idílicos.", "url": "https://elobservario.com/actividad/salida-al-campo/"},
+  {"nombre": "El retorno de los grandes herbívoros", "resumen": "¿Sabías que grandes herbívoros salvajes pastan libremente por los montes del Alto Tajo?", "detalle": "Gracias a una iniciativa de renaturalización llevada a cabo por Rewilding Spain en Mazarete. Acompáñanos en esta experiencia de 2 horas que te llevará a explorar la función ecológica de estos majestuosos herbívoros y su impacto positivo en la biodiversidad.", "url": "https://elobservario.com/actividad/ruta-interpretada-por-el-barranco-del-arandilla/"},
+] %}
+{% set proximamente = [
+  {"nombre": "Experiencia Micológica", "resumen": "Aprenderemos a identificar diferentes especies de hongos y entenderemos su papel en la salud del bosque."},
+  {"nombre": "El espectáculo de la Berrea", "resumen": "Observar y escuchar el fascinante ritual de apareamiento del ciervo durante el otoño."},
+  {"nombre": "El Legado de las Horneras", "resumen": "Sumergirse en el antiguo oficio de hacer pan, tal como lo practicaban las horneras de antaño."},
+  {"nombre": "Velada Estelar en el Castillo de Cobeta", "resumen": "Una inmersión en la inmensidad del universo, guiándote a través de eventos astronómicos y constelaciones."},
+] %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Alto Tajo</span>
+    <h1>Actividades</h1>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container grid-3">
+    {% for act in actividades %}
+    <div class="apto-card" style="padding-bottom:6px;">
+      <div class="body">
+        <h3>{{ act.nombre }}</h3>
+        <p style="font-size:.92rem;">{{ act.detalle }}</p>
+        <a class="btn btn-outline" href="{{ act.url }}" target="_blank" rel="noopener">Haz clic aquí</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <p style="font-size:.85rem;color:var(--text-soft);margin-top:24px;">Las reservas de estas actividades se gestionan a través de nuestro partner de ecoturismo, El Observatorio.</p>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <span class="eyebrow">Próximamente</span>
+    <h2>En preparación</h2>
+    <div class="grid-3" style="margin-top:24px;">
+      {% for act in proximamente %}
+      <div>
+        <h3>{{ act.nombre }}</h3>
+        <p style="font-size:.92rem;">{{ act.resumen }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

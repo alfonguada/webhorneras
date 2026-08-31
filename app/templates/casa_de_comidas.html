@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Casa de comidas - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Casa de comidas en Cobeta: cocina tradicional al horno de leña, asados y platos caseros para recoger, producto de cercanía.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Gastronomía</span>
+    <h1>Casa de Comidas</h1>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container two-col">
+    <div>
+      <h2>Casa de comidas</h2>
+      <p>En el corazón de Cobeta se encuentra nuestra Casa de Comidas, un lugar donde la tradición y el sabor se dan la mano. Inspirada en las antiguas horneras del pueblo, esta casa es un homenaje a la cocina de siempre, la que se hace con tiempo, producto local y mucho cariño.</p>
+    </div>
+    <div class="round-block" style="background:linear-gradient(135deg,var(--wine),#6e1f38); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto del comedor<br>(pendiente de sustituir)
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container two-col">
+    <div class="round-block" style="background:linear-gradient(135deg,var(--sage),var(--sage-dark)); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto del horno de leña<br>(pendiente de sustituir)
+    </div>
+    <div>
+      <span class="eyebrow">Asados y comida casera para recoger</span>
+      <h2>¿Te apetece comer como en casa?</h2>
+      <p>Sin tener que cocinar. En Las Horneras de Cobeta preparamos asados al horno de leña y platos caseros para que te los lleves y los disfrutes donde tú quieras. Ideal para celebraciones, comidas en familia o simplemente para darte un buen homenaje. Encarga con antelación, pasa a recogerlo y llévate el calor del horno a tu mesa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container two-col">
+    <div>
+      <span class="eyebrow">Historia de las Horneras</span>
+      <h2>El horno que da nombre a la casa</h2>
+      <p>Este horno no es solo un elemento decorativo: es el corazón y el origen de todo. Aquí cocían el pan las abuelas del pueblo, las verdaderas horneras de Cobeta. Mujeres que, con sus manos y el calor del fuego, alimentaban a toda una comunidad. En su honor nace este proyecto, una casa de comidas que mantiene viva la tradición del horno de leña y de la cocina hecha con alma.</p>
+      <p>El restaurante se levanta sobre la historia de generaciones, sobre el aroma del pan recién hecho y la sabiduría de las recetas de siempre. Hoy seguimos encendiendo este horno, no solo para cocinar, sino para contar una historia que merece ser compartida en cada plato.</p>
+    </div>
+    <div>
+      <span class="eyebrow">¿Quiénes somos?</span>
+      <h2>El legado de las horneras</h2>
+      <p>Hoy, el legado de las horneras sigue vivo gracias a sus nietos y familiares, que con respeto, orgullo y mucho trabajo han dado forma a esta Casa de Comidas. Aquí se continúa la tradición, adaptada a nuestro tiempo pero sin perder su esencia.</p>
+      <p>En el restaurante se trabaja con mimo y técnica en el horno, la parrilla y el puchero, elaborando platos que respetan el sabor auténtico de la cocina rural. Cada receta está pensada para realzar el producto local, de temporada y de máxima calidad.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block alt text-center">
+  <div class="container">
+    <h2>¿Quieres reservar una mesa?</h2>
+    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Reservar mesa</a>
+  </div>
+</section>
+{% endblock %}

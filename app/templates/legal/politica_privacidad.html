@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Política de privacidad - Las Horneras de Cobeta{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Política de privacidad</h1></div></section>
+<section class="block">
+  <div class="container legal-content">
+    <h2>1. Responsable del tratamiento</h2>
+    <p>{{ config.RAZON_SOCIAL }}, en adelante RESPONSABLE, es el Responsable del Tratamiento de los datos personales del Usuario y le informa que estos datos serán tratados de conformidad con lo dispuesto en el Reglamento (UE) 2016/679 de 27 de abril de 2016 (GDPR), por lo que se le facilita la siguiente información del tratamiento:</p>
+    <ul>
+      <li>{{ config.RAZON_SOCIAL }}</li>
+      <li>{{ config.NIF }}</li>
+      <li>Calle Calvario, 2 &middot; 19443 Cobeta (Guadalajara)</li>
+    </ul>
+
+    <h2>2. Fin del tratamiento</h2>
+    <p>Mantener una relación comercial con el Usuario. Las operaciones previstas para realizar el tratamiento son:</p>
+    <ul>
+      <li>Remisión de comunicaciones comerciales publicitarias por email, SMS, comunidades sociales o cualquier otro medio electrónico o físico relacionadas con sus productos y servicios, o de sus colaboradores o proveedores. En este caso, los terceros nunca tendrán acceso a los datos personales.</li>
+      <li>Realizar estudios estadísticos de forma agregada y anónima de visitas y navegación en la web.</li>
+      <li>Atender las solicitudes de información o cualquier tipo de petición realizada por el usuario a través de las formas de contacto disponibles.</li>
+    </ul>
+
+    <h2>3. Criterios de conservación de los datos</h2>
+    <p>Se conservarán mientras exista un interés mutuo para mantener el fin del tratamiento; cuando ya no sea necesario, se suprimirán con medidas de seguridad adecuadas para garantizar la seudonimización o la destrucción total de los mismos.</p>
+
+    <h2>4. Comunicación de los datos</h2>
+    <p>No se comunicarán los datos a terceros, salvo obligación legal.</p>
+
+    <h2>5. Derechos que asisten al Usuario</h2>
+    <ul>
+      <li>Derecho a retirar el consentimiento en cualquier momento.</li>
+      <li>Derecho de acceso, rectificación, portabilidad y supresión de sus datos y a la limitación u oposición a su tratamiento.</li>
+      <li>Derecho a presentar una reclamación ante la autoridad de control (<a href="https://www.agpd.es" target="_blank" rel="noopener">agpd.es</a>) si considera que el tratamiento no se ajusta a la normativa vigente.</li>
+    </ul>
+
+    <h2>6. Datos de contacto para ejercer sus derechos</h2>
+    <p>{{ config.RAZON_SOCIAL }} &middot; Calle Calvario, 2, 19443 Cobeta (Guadalajara) &middot; Tel. {{ config.TELEFONO_VISIBLE }} &middot; <a href="mailto:{{ config.EMAIL_INFO }}">{{ config.EMAIL_INFO }}</a></p>
+
+    <h2>7. Carácter obligatorio o facultativo de la información facilitada</h2>
+    <p>Los Usuarios, mediante la marcación de las casillas correspondientes y entrada de datos en los campos marcados con asterisco (*) en el formulario de contacto, aceptan expresamente y de forma libre e inequívoca que sus datos son necesarios para atender su petición, siendo voluntaria la inclusión de datos en los campos restantes.</p>
+
+    <h2>8. Medidas de seguridad</h2>
+    <p>El RESPONSABLE garantiza que ha implementado políticas técnicas y organizativas apropiadas para aplicar las medidas de seguridad que establece el GDPR, con el fin de proteger los derechos y libertades de los Usuarios.</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Catering Rural - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}El mejor catering rural para tu evento: bodas, comuniones, bautizos y comidas populares con auténtico sabor tradicional, en Cobeta y el Alto Tajo.{% endblock %}
+
+{% block content %}
+<section class="hero" style="--hero-img:linear-gradient(135deg,#3E5B53,#892946);">
+  <div class="container">
+    <span class="eyebrow" style="color:#E7CBD3;">Las Horneras</span>
+    <h1>Catering Rural</h1>
+    <p class="lede">El mejor catering rural para tu evento — bodas, comuniones, bautizos y comidas populares con auténtico sabor tradicional.</p>
+    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Solicitar presupuesto</a>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container grid-3">
+    <div>
+      <h3>Bodas</h3>
+      <p>Catering integral para bodas con cocina tradicional, producto local y recetas de siempre.</p>
+    </div>
+    <div>
+      <h3>Comuniones</h3>
+      <p>Experiencias gastronómicas adaptadas a comuniones y eventos infantiles, cuidando cada detalle.</p>
+    </div>
+    <div>
+      <h3>Eventos</h3>
+      <p>Comidas populares, encuentros de grupos y celebraciones privadas con servicio completo y atención profesional.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <span class="eyebrow">Expertos en comidas populares</span>
+    <h2>Cocina tradicional, presupuesto a medida</h2>
+    <ul class="amenities" style="margin-top:24px;">
+      <li>Comidas tradicionales con productos locales y auténtico sabor rural</li>
+      <li>Eventos y celebraciones con atención profesional y cuidando cada detalle</li>
+      <li>Experiencias gastronómicas únicas para grupos y comensales exigentes</li>
+      <li>Servicio completo: elaboración, montaje y coordinación integral del evento</li>
+      <li>Presupuestos personalizados según número de comensales y tipo de evento</li>
+    </ul>
+    <p style="margin-top:24px;max-width:64ch;">Las Horneras de Cobeta ofrece una experiencia gastronómica auténtica, cuidando cada detalle para que tu evento se disfrute con tranquilidad, cercanía y sabor rural.</p>
+    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Solicitar presupuesto</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Apartamentos - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Cinco apartamentos rurales en Cobeta, Guadalajara, todos diferentes, diseñados para disfrutar de toda una experiencia en el Alto Tajo.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Alojamiento</span>
+    <h1>Apartamentos</h1>
+    <p style="max-width:60ch;margin:0 auto;">Cinco apartamentos, todos diferentes, diseñados para disfrutar de toda una experiencia en Cobeta.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="avaibook-search">
+      <h3 class="mt-0">Comprueba disponibilidad</h3>
+      <div data-accommodations-filter="none" data-target="_blank" class="avaibook-search-widget"
+           data-widget-id="{{ config.AVAIBOOK_WIDGET_ID }}" data-widget-token="{{ config.AVAIBOOK_WIDGET_TOKEN }}"
+           data-background-color="transparent" data-main-color="#bcb599" data-border-radius="20px"
+           data-shadow="0 2px 20px rgb(0 0 0 / 0%)" data-padding="1rem" data-language="es"></div>
+    </div>
+
+    <div class="grid-3" style="margin-top:40px;">
+      {% for apto in apartamentos %}
+      <a class="apto-card" href="{{ url_for('main.apartamento_detalle', slug=apto.slug) }}">
+        <div class="thumb">
+          {% if apto.imagen %}
+            <img src="{{ url_for('static', filename='img/' ~ apto.imagen) }}" alt="Apartamento {{ apto.nombre }}">
+          {% else %}
+            {{ apto.nombre }}
+          {% endif %}
+        </div>
+        <div class="body">
+          <h3>{{ apto.nombre }}</h3>
+          <p style="font-size:.9rem;color:var(--text-soft);margin-bottom:8px;">{{ apto.resumen }}</p>
+          <div class="meta"><span>{{ apto.m2 }} m²</span><span>{{ apto.ocupacion }}</span></div>
+          <div class="price">{{ apto.precio_desde }}€ <span>/ día desde</span></div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- TODO: el HTML archivado no incluía el <script> que activa este
+     div.avaibook-search-widget (probablemente se inserta desde el panel de
+     AvaiBook al generar el widget). Pedir al propietario el snippet de
+     inserción actual desde su cuenta de AvaiBook y añadirlo aquí. -->
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Cobeta: Refugio y Aventura, en los susurros del Alto Tajo, descubre, vive, enamórate. Apartamentos rurales, casa de comidas y catering en el Parque Natural del Alto Tajo.{% endblock %}
+
+{% block content %}
+
+<section class="hero" style="--hero-img:url('{{ url_for('static', filename='img/home-hero-1.jpg') }}');">
+  <div class="container">
+    <span class="eyebrow" style="color:#E7CBD3;">Cobeta &middot; Alto Tajo &middot; Guadalajara</span>
+    <h1>Cobeta: Refugio y Aventura, en los susurros del Alto Tajo</h1>
+    <p class="lede">Descubre, vive, enamórate. Cinco apartamentos rurales y una casa de comidas construidos con piedra típica de Cobeta y acero corten.</p>
+    <a class="btn btn-accent" href="{{ url_for('main.apartamentos') }}">Reserva ahora</a>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container two-col">
+    <div>
+      <span class="eyebrow">El Edificio</span>
+      <h2>Vive la Historia de Las Horneras</h2>
+      <p>En nuestro exclusivo alojamiento rural, la historia se encuentra con la modernidad. Construido con piedra típica de Cobeta y acero corten, cada uno de nuestros cinco apartamentos y la casa de comidas rinden homenaje a «Las Horneras de Cobeta». Aquí, el horno de leña del restaurante no solo es un tributo, sino también el corazón de una experiencia gastronómica única en el Alto Tajo.</p>
+      <p>Aquí, cada estancia es un capítulo en una historia de respeto, innovación y confort.</p>
+    </div>
+    <div class="round-block" style="background:linear-gradient(135deg,var(--sage),var(--sage-dark)); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto del edificio<br>(pendiente de sustituir)
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <span class="eyebrow">Apartamentos</span>
+    <h2>Un lugar donde reconectar</h2>
+    <p style="max-width:60ch;">Descubre cada uno de nuestros cinco apartamentos rurales, todos diferentes, pero diseñados para disfrutar de toda una experiencia en Cobeta, Guadalajara.</p>
+
+    <div class="scroller">
+      {% for apto in apartamentos %}
+      <a class="apto-card" href="{{ url_for('main.apartamento_detalle', slug=apto.slug) }}">
+        <div class="thumb">
+          {% if apto.imagen %}
+            <img src="{{ url_for('static', filename='img/' ~ apto.imagen) }}" alt="Apartamento {{ apto.nombre }}">
+          {% else %}
+            {{ apto.nombre }}
+          {% endif %}
+        </div>
+        <div class="body">
+          <h3>{{ apto.nombre }}</h3>
+          <div class="meta"><span>{{ apto.m2 }} m²</span><span>{{ apto.ocupacion }}</span></div>
+          <div class="price">{{ apto.precio_desde }}€ <span>/ día desde</span></div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <a class="btn btn-outline" href="{{ url_for('main.apartamentos') }}">Ver Todos</a>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:36px;">
+      <span class="eyebrow">Excelente &middot; a base de 129 reseñas en Google</span>
+      <h2>Lo que dicen quienes ya han venido</h2>
+      <p style="font-size:.85rem;color:var(--text-soft);">Sección conectada originalmente a un widget de Trustindex/Google Reviews. Aquí se muestran reseñas reales recopiladas del sitio archivado; sustituir por integración con la API de Google Places para mantenerlas sincronizadas.</p>
+    </div>
+    <div class="scroller">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Apartamentos con encanto en un pueblo bonito y bien ubicado para descubrir el Parque Natural del Alto Tajo. Están decorados con mucho gusto hasta el último detalle.»</p>
+        <div class="author">Javier Irurtia</div>
+        <div class="date">Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Apartamentos privilegiados en un entorno maravilloso. Repetiremos sin duda.»</p>
+        <div class="author">Beatriz Vázquez</div>
+        <div class="date">Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Fuimos un grupo de amigos a alojarnos una noche para realizar una cacería al día siguiente. Trato de 10 por parte de la propietaria. La casa increíble, súper bien cuidada. Cenamos en el restaurante, comida de calidad.»</p>
+        <div class="author">Xavi</div>
+        <div class="date">Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Un sitio excepcional, exquisita rehabilitación de un edificio en el centro urbano, súper confortable. Ideal para visitar zonas del parque del Alto Tajo.»</p>
+        <div class="author">Joaquin Soler</div>
+        <div class="date">Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container two-col">
+    <div class="round-block" style="background:linear-gradient(135deg,var(--wine),#6e1f38); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto del restaurante<br>(pendiente de sustituir)
+    </div>
+    <div>
+      <span class="eyebrow">El Restaurante</span>
+      <h2>Sabores tradicionales en cada plato</h2>
+      <p>Redescubra la cocina rural en su forma más sofisticada. Nuestro enfoque combina la autenticidad del horno de leña y las recetas ancestrales con técnicas culinarias modernas, creando platos que son una verdadera obra de arte. Los productos de cercanía se transforman bajo la visión innovadora de nuestros chefs.</p>
+      <a class="btn btn-primary" href="{{ url_for('main.casa_de_comidas') }}">View restaurant</a>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container two-col">
+    <div>
+      <span class="eyebrow">Experiencias</span>
+      <h2>Autenticidad en cada aventura</h2>
+      <p>Sumérjase en un mundo de experiencias auténticas. Desde turismo de observación hasta la inmersión en tradiciones centenarias, cada actividad está diseñada para conectarle con la esencia de nuestra tierra en Cobeta y el Alto Tajo.</p>
+      <a class="btn btn-primary" href="{{ url_for('main.actividades') }}">Ver Actividades</a>
+    </div>
+    <div class="round-block" style="background:linear-gradient(135deg,var(--gold),#8C8154); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto de actividades<br>(pendiente de sustituir)
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <span class="eyebrow">Eventos Privados</span>
+    <h2>Momentos Mágicos</h2>
+    <p style="max-width:64ch;">Creamos ambientes donde cada detalle cuenta para forjar memorias inolvidables. Con una combinación de elegancia, innovación y personalización, su evento se elevará a nuevas alturas.</p>
+    <div class="grid-3" style="margin-top:32px;">
+      <div>
+        <h3>Celebraciones y Grupos</h3>
+        <p>«La Unión Hace la Fiesta» ofrece un espacio íntimo y lujoso para sus eventos más preciados. Desde aniversarios hasta reuniones familiares.</p>
+      </div>
+      <div>
+        <h3>Team Building</h3>
+        <p>Descubra el lugar perfecto para inspirar la grandeza en su equipo, en un entorno sereno y estimulante para fomentar la colaboración y la creatividad.</p>
+      </div>
+      <div>
+        <h3>Escapadas Temáticas</h3>
+        <p>Con «Explora y Encuentra», cada estancia es una aventura única: historia local, astronomía o fotografía de naturaleza.</p>
+      </div>
+    </div>
+    <a class="btn btn-outline" style="margin-top:28px;" href="{{ url_for('main.contacto') }}">Consulte Ahora</a>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="container">
+    <blockquote>&laquo;Nuestro destino de viaje nunca es un lugar, sino una nueva forma de ver las cosas.&raquo;</blockquote>
+    <cite>Henry Miller</cite>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2>Antes de reservar</h2>
+    <div style="max-width:70ch;">
+      <details class="faq-item" open>
+        <summary>¿Qué servicios reúne la home de Las Horneras de Cobeta?</summary>
+        <p>La home reúne de forma natural el alojamiento rural con cinco apartamentos, la casa de comidas con cocina de raíz y la línea de catering rural para eventos en Cobeta, Guadalajara y el entorno del Alto Tajo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Dónde está ubicado el alojamiento?</summary>
+        <p>Las Horneras de Cobeta está en Calle Castillo S/N, 19443 Cobeta, en la provincia de Guadalajara, dentro del entorno del Alto Tajo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué tipo de experiencia propone la home?</summary>
+        <p>Propone una escapada rural que combina descanso en apartamentos, gastronomía tradicional, actividades auténticas en el Alto Tajo y espacios para celebraciones, grupos y team building.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="block alt text-center">
+  <div class="container">
+    <span class="eyebrow">¿Dónde estamos?</span>
+    <h2>Las Horneras de Cobeta</h2>
+    <p>Calle Castillo S/N &middot; 19443 Cobeta (Guadalajara)</p>
+  </div>
+</section>
+
+{% endblock %}

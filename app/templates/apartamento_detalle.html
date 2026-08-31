@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}{{ apto.nombre }} - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}{{ apto.subtitulo }} en Las Horneras de Cobeta. {{ apto.m2 }} m², {{ apto.ocupacion }}, desde {{ apto.precio_desde }}€/día.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ apto.resumen }}</span>
+    <h1>{{ apto.nombre }}</h1>
+    <p>{{ apto.subtitulo }}</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container two-col" style="align-items:flex-start;">
+    <div>
+      <div class="round-block" style="background:linear-gradient(135deg,var(--sage),var(--sage-dark)); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.6rem; text-align:center; padding:20px; margin-bottom:24px;">
+        {% if apto.imagen %}
+          <img src="{{ url_for('static', filename='img/' ~ apto.imagen) }}" alt="Apartamento {{ apto.nombre }}" style="width:100%;height:100%;object-fit:cover;">
+        {% else %}
+          Foto de {{ apto.nombre }}<br>(pendiente de sustituir)
+        {% endif %}
+      </div>
+
+      <h3>Amenities y comodidades</h3>
+      <ul class="amenities">
+        {% for item in apto.amenities %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div>
+      <div class="meta" style="font-size:1rem;margin-bottom:18px;">
+        <span><strong>{{ apto.m2 }} m²</strong></span>
+        <span>{{ apto.ocupacion }}</span>
+      </div>
+
+      {% for parrafo in apto.descripcion %}
+      <p>{{ parrafo }}</p>
+      {% endfor %}
+
+      <div class="price" style="font-size:1.4rem;margin:18px 0;">{{ apto.precio_desde }}€ <span>/ día desde</span></div>
+      <a class="btn btn-accent" target="_blank" rel="noopener"
+         href="https://www.avaibook.com/reservas/nueva_reserva.php?cod_alojamiento={{ config.AVAIBOOK_COD_ALOJAMIENTO }}&adults=1&children=0&babies=0&lang=es">
+        ¡Reserva ya!
+      </a>
+
+      <div class="booking-widgets">
+        <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id={{ apto.avaibook_widget_mini }}&lang=ES"
+                style="width:100%;max-width:500px;height:355px;" loading="lazy" title="Calendario de disponibilidad — {{ apto.nombre }}"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container">
+    <h2>Otros apartamentos</h2>
+    <div class="scroller">
+      {% for otro in otros %}
+      <a class="apto-card" href="{{ url_for('main.apartamento_detalle', slug=otro.slug) }}">
+        <div class="thumb">
+          {% if otro.imagen %}
+            <img src="{{ url_for('static', filename='img/' ~ otro.imagen) }}" alt="Apartamento {{ otro.nombre }}">
+          {% else %}
+            {{ otro.nombre }}
+          {% endif %}
+        </div>
+        <div class="body">
+          <h3>{{ otro.nombre }}</h3>
+          <div class="meta"><span>{{ otro.m2 }} m²</span><span>{{ otro.ocupacion }}</span></div>
+          <div class="price">{{ otro.precio_desde }}€ <span>/ día desde</span></div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

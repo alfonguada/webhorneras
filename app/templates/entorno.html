@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Entorno - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Descubre la magia del Alto Tajo: Cobeta y sus tesoros naturales. Parque Natural, Geoparque, senderismo y pueblos con encanto.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Lugares de interés</span>
+    <h1>Descubre la magia del Alto Tajo</h1>
+    <p style="max-width:60ch;margin:0 auto;">Cobeta, un oasis natural en el Alto Tajo, ideal para amantes de la naturaleza y el turismo rural. Ven a descubrir su hospitalidad y enamórate de su entorno.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container two-col">
+    <div>
+      <span class="eyebrow">Alto Tajo</span>
+      <h2>Bienvenidos al Alto Tajo</h2>
+      <p>Olvídate de los lugares comunes, déjate llevar por la aventura y adéntrate en un territorio virgen donde la naturaleza te sorprenderá en cada paso. Las Horneras te invitan a descubrir un destino único, donde la belleza salvaje se funde con la tradición y el confort.</p>
+      <p>Extensos bosques que se extienden hasta donde alcanza la vista, abruptos cañones que desafían la gravedad y una fauna de las más ricas de la península te esperan en un entorno incomparable. Explora un Parque Natural y un Geoparque repletos de curiosidades: senderismo, ciclismo, escalada, observación de aves&hellip;</p>
+    </div>
+    <div class="round-block" style="background:linear-gradient(135deg,var(--sage),var(--sage-dark)); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto del Alto Tajo<br>(pendiente de sustituir)
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container two-col">
+    <div class="round-block" style="background:linear-gradient(135deg,var(--gold),#8C8154); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto de miradores<br>(pendiente de sustituir)
+    </div>
+    <div>
+      <span class="eyebrow">Alto Tajo</span>
+      <h2>Miradores y Paisajes</h2>
+      <p>Asómate a las ventanas que la naturaleza nos regala en Las Horneras y descubre un lugar donde los paisajes se transforman con cada estación. Déjate sorprender por la diversidad de miradores que te ofrece este destino, desde donde podrás contemplar vistas panorámicas impresionantes de extensos bosques, imponentes cañones y mucho más.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <span class="eyebrow">Alto Tajo</span>
+    <h2>Rutas de Senderismo y Trekking</h2>
+    <p style="max-width:70ch;">No hay mejor manera de conocer un destino que recorriendo sus caminos y senderos. En Cobeta, te invitamos a descubrir una red de rutas que te llevarán a través de los paisajes más bellos de la zona. Además de las rutas señalizadas, te ofrecemos la posibilidad de participar en nuestras actividades guiadas, rutas de senderismo con interpretación del medio natural, excursiones nocturnas para observar las estrellas o talleres sobre el medio. Pídenos información.</p>
+  </div>
+</section>
+
+<section class="block alt two-col-wrap">
+  <div class="container two-col">
+    <div>
+      <span class="eyebrow">Cobeta</span>
+      <h2>Cobeta, tu destino</h2>
+      <p>Imagina un lugar donde el tiempo parece haberse detenido. Un pequeño pueblo, pintoresco y bien conservado, donde las casas de arenisca roja se alzan bajo la atenta mirada de un castillo medieval. Cobeta es mucho más que un pueblo bonito. Es un lugar donde la tradición se mantiene viva.</p>
+    </div>
+    <div>
+      <span class="eyebrow">Pueblos con encanto</span>
+      <h2>Alrededores</h2>
+      <p><strong>Molina de Aragón</strong>, la ciudad medieval con su imponente castillo y su rica historia. <strong>Ablanque</strong>, pueblo serrano, u <strong>Olmeda de Cobeta</strong>, con su rico patrimonio natural y su ambiente tranquilo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block text-center">
+  <div class="container">
+    <h2>¿Quieres venir a descubrir el Alto Tajo?</h2>
+    <p>¿Tienes alguna duda?</p>
+    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Contacta con nosotros</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Página no encontrada - Las Horneras de Cobeta{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Error 404</span>
+    <h1>No hemos encontrado esta página</h1>
+    <a class="btn btn-primary" href="{{ url_for('main.index') }}">Volver al inicio</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Política de cookies - Las Horneras de Cobeta{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1>Política de cookies</h1></div></section>
+<section class="block">
+  <div class="container legal-content">
+    <p>Esta web utiliza cookies y otras tecnologías relacionadas (para mayor comodidad, todas las tecnologías se denominan «cookies»). Las cookies también son colocadas por terceros a los que hemos contratado. En este documento te informamos sobre el uso de cookies en nuestra web.</p>
+
+    <h2>¿Qué son las cookies?</h2>
+    <p>Una cookie es un pequeño archivo que se envía junto con las páginas de esta web y que tu navegador almacena en el disco duro de tu ordenador u otro dispositivo. La información almacenada puede ser devuelta a nuestros servidores o a los servidores de terceros apropiados durante una visita posterior.</p>
+
+    <h2>Tipos de cookies utilizadas</h2>
+    <ul>
+      <li><strong>Funcionales:</strong> aseguran que ciertas partes de la web funcionen correctamente. Se colocan sin necesidad de consentimiento.</li>
+      <li><strong>Estadísticas:</strong> nos permiten obtener información sobre el uso de la web para optimizar la experiencia. Requieren tu consentimiento.</li>
+      <li><strong>Marketing/seguimiento:</strong> usadas para crear perfiles de usuario y mostrar publicidad relevante. Requieren tu consentimiento.</li>
+    </ul>
+
+    <h2>Cookies usadas actualmente en el sitio</h2>
+    <div class="tblwrap" style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:.92rem;">
+        <thead>
+          <tr style="text-align:left;border-bottom:1px solid var(--line);">
+            <th style="padding:8px 12px;">Nombre</th><th style="padding:8px 12px;">Finalidad</th><th style="padding:8px 12px;">Duración</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:8px 12px;">lh_cookie_consent</td><td style="padding:8px 12px;">Guardar tu preferencia de consentimiento de cookies</td><td style="padding:8px 12px;">Persistente (localStorage)</td></tr>
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:8px 12px;">session</td><td style="padding:8px 12px;">Sesión del servidor (formularios, mensajes)</td><td style="padding:8px 12px;">Sesión</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--text-soft);">Actualizar esta tabla cuando se integren de nuevo Google Analytics/Site Kit, Mailchimp o cualquier otro servicio de terceros con cookies propias.</p>
+
+    <h2>Gestionar tus preferencias</h2>
+    <p>Puedes cambiar tu decisión sobre cookies en cualquier momento borrando los datos de este sitio desde los ajustes de tu navegador. Al volver a visitar la web, se te volverá a mostrar el aviso de consentimiento.</p>
+
+    <h2>Datos de contacto</h2>
+    <p>{{ config.RAZON_SOCIAL }} &middot; {{ config.DIRECCION }} &middot; <a href="mailto:{{ config.EMAIL_INFO }}">{{ config.EMAIL_INFO }}</a></p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}La Conchi Foodtruck - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}La Conchi Foodtruck: cocina tradicional allá donde nos necesites. Eventos privados, fiestas populares, empresas, bodas. Alquiler de foodtruck desde 200€/día.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Los chicos de la Conchi</span>
+    <h1>La Conchi Foodtruck</h1>
+    <p style="max-width:60ch;margin:0 auto;">Llevamos la cocina tradicional allá donde nos necesites. Eventos privados, fiestas populares, empresas, bodas o encuentros de grupo. Sabor auténtico, producto local y recetas de siempre, servidas con cercanía y buen rollo.</p>
+    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Contacto</a>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="container two-col">
+    <div>
+      <h2>Alquiler de Foodtruck</h2>
+      <p>¿Quieres la foodtruck sin servicio de cocina? Alquila La Conchi Foodtruck para eventos, ferias o acciones promocionales.</p>
+      <p class="price" style="font-size:1.6rem;">Desde 200€ <span>/ día</span></p>
+      <a class="btn btn-primary" href="{{ url_for('main.contacto') }}">Solicitar presupuesto</a>
+    </div>
+    <div class="round-block" style="background:linear-gradient(135deg,var(--gold),#8C8154); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+      Foto de la foodtruck<br>(pendiente de sustituir)
+    </div>
+  </div>
+</section>
+{% endblock %}
