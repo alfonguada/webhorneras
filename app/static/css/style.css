@@ -274,12 +274,25 @@ body { top: 0 !important; }
   .gtranslate-wrap { display: none; }
 }
 
-/* ---------- whatsapp float ---------- */
+/* ---------- whatsapp widget ---------- */
+.wa-widget { position: fixed; bottom: 22px; right: 22px; z-index: 50; }
 .whatsapp-float {
-  position: fixed; bottom: 22px; right: 22px; z-index: 50;
+  position: relative; border: none; cursor: pointer;
   background: #25D366; color: var(--white); width: 58px; height: 58px; border-radius: 999px;
   display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); font-size: 1.6rem;
 }
+.wa-tooltip {
+  position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+  background: var(--white); color: var(--ink); font-size: .82rem; font-family: var(--font-body);
+  padding: 8px 14px; border-radius: 999px; white-space: nowrap; box-shadow: var(--shadow);
+}
+.wa-panel {
+  position: absolute; bottom: 72px; right: 0; width: 280px;
+  background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+}
+.wa-panel-header { background: #075E54; color: #fff; padding: 14px 18px; font-family: var(--font-label); font-size: .85rem; letter-spacing: .04em; }
+.wa-panel-body { padding: 18px; background: #ECE5DD; }
+.wa-panel-body p { font-size: .9rem; color: var(--ink); margin-bottom: 14px; }
 
 /* ---------- cookie banner ---------- */
 #cookie-banner {

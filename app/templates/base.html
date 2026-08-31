@@ -104,8 +104,24 @@
     </div>
   </footer>
 
-  <a class="whatsapp-float" href="https://wa.me/{{ config.WHATSAPP_NUMERO }}?text={{ '¡Hola! Me gustaría más información sobre los apartamentos.' | urlencode }}"
-     target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">💬</a>
+  <!-- Widget de WhatsApp: replica el comportamiento real del plugin original
+       (Creame WhatsApp Me / JoinChat) — aparece con 3s de retraso, muestra
+       una burbuja de saludo, y al hacer clic abre un panel con el mensaje
+       antes de ir a WhatsApp. El chat se abre en blanco (el original tenía
+       "message_send" vacío: no precarga ningún texto). -->
+  <div class="wa-widget" id="wa-widget" hidden>
+    <div class="wa-panel" id="wa-panel" hidden>
+      <div class="wa-panel-header">WhatsApp</div>
+      <div class="wa-panel-body">
+        <p>¡Hola!<br>Si necesitas más información sobre nuestros apartamentos, no dudes en preguntarnos</p>
+        <a class="btn btn-primary" style="background:#25D366;" href="https://wa.me/{{ config.WHATSAPP_NUMERO }}" target="_blank" rel="noopener">Abrir chat</a>
+      </div>
+    </div>
+    <button class="whatsapp-float" id="wa-toggle" aria-label="Escríbenos por WhatsApp" aria-expanded="false">
+      <span class="wa-tooltip">💬 ¡Pregúntanos!</span>
+      <span aria-hidden="true">💬</span>
+    </button>
+  </div>
 
   <div id="cookie-banner" hidden>
     <p>Utilizamos cookies propias y de terceros para el funcionamiento del sitio, estadísticas y marketing. Puedes aceptarlas, rechazarlas o leer nuestra <a href="{{ url_for('main.politica_cookies') }}" style="color:#fff;text-decoration:underline;">política de cookies</a>.</p>
@@ -137,6 +153,20 @@
       toggle.addEventListener('click', openNav);
       closeBtn.addEventListener('click', closeNav);
       overlay.addEventListener('click', closeNav);
+    })();
+
+    // Widget de WhatsApp: aparece a los 3s (como "button_delay":3 del
+    // plugin original) y el clic abre/cierra el panel con el saludo.
+    (function () {
+      var widget = document.getElementById('wa-widget');
+      var toggle = document.getElementById('wa-toggle');
+      var panel = document.getElementById('wa-panel');
+      setTimeout(function () { widget.hidden = false; }, 3000);
+      toggle.addEventListener('click', function () {
+        var open = panel.hidden;
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
     })();
 
     // Banner de cookies (equivalente simplificado a Complianz)
