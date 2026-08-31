@@ -1,6 +1,6 @@
 import logging
 
-from flask import Blueprint, current_app, flash, redirect, render_template, url_for
+from flask import Blueprint, Response, current_app, flash, redirect, render_template, url_for
 
 from app.data.apartamentos import APARTAMENTOS, get_apartamento
 from app.forms import ContactoForm, NewsletterForm
@@ -62,6 +62,33 @@ def actividades():
     return render_template("actividades.html")
 
 
+@main_bp.route("/comodidades/")
+def comodidades():
+    return render_template("comodidades.html", apartamentos=APARTAMENTOS)
+
+
+@main_bp.route("/disponibilidad/")
+def disponibilidad():
+    return render_template("disponibilidad.html")
+
+
+@main_bp.route("/carta/")
+def carta():
+    return render_template("carta.html")
+
+
+@main_bp.route("/historia/")
+def historia():
+    return render_template("historia.html", apartamentos=APARTAMENTOS)
+
+
+@main_bp.route("/faq/")
+def faq():
+    # En el sitio original esta página estaba vacía; el FAQ real vive
+    # en la portada (sección con datos estructurados AIOSEO).
+    return redirect(url_for("main.index") + "#faq")
+
+
 @main_bp.route("/contacto/", methods=["GET", "POST"])
 def contacto():
     form = ContactoForm()
@@ -119,3 +146,38 @@ def politica_reservas():
 @main_bp.route("/regimen-interno/")
 def regimen_interno():
     return render_template("legal/regimen_interno.html")
+
+
+# El sitio original no tenía robots.txt ni sitemap.xml archivados en
+# Wayback Machine (ver dosier de análisis) — se generan de cero aquí.
+
+@main_bp.route("/robots.txt")
+def robots_txt():
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        f"Sitemap: {url_for('main.sitemap_xml', _external=True)}",
+    ]
+    return Response("\n".join(lines), mimetype="text/plain")
+
+
+@main_bp.route("/sitemap.xml")
+def sitemap_xml():
+    static_endpoints = [
+        "main.index", "main.apartamentos", "main.comodidades",
+        "main.casa_de_comidas", "main.carta", "main.catering_rural",
+        "main.foodtruck", "main.entorno", "main.actividades",
+        "main.disponibilidad", "main.historia", "main.contacto",
+        "main.aviso_legal", "main.politica_privacidad",
+        "main.politica_cookies", "main.politica_reservas",
+        "main.regimen_interno",
+    ]
+    urls = [url_for(ep, _external=True) for ep in static_endpoints]
+    urls += [
+        url_for("main.apartamento_detalle", slug=a["slug"], _external=True)
+        for a in APARTAMENTOS
+    ]
+    xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    xml += [f"  <url><loc>{u}</loc></url>" for u in urls]
+    xml.append("</urlset>")
+    return Response("\n".join(xml), mimetype="application/xml")

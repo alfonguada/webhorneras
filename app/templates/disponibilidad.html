@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Disponibilidad - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Comprueba la disponibilidad de los apartamentos rurales de Las Horneras de Cobeta.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Reserva</span>
+    <h1>¿Listo para una escapada?</h1>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="avaibook-search">
+      <div data-accommodations-filter="none" data-target="_blank" class="avaibook-search-widget"
+           data-widget-id="{{ config.AVAIBOOK_WIDGET_ID }}" data-widget-token="{{ config.AVAIBOOK_WIDGET_TOKEN }}"
+           data-background-color="rgba(255, 255, 255, 0.5)" data-main-color="rgba(62, 91, 83, 0.85)"
+           data-border-radius="15px" data-shadow="0 2px 20px rgb(0 0 0 / 16%)" data-padding="1rem" data-language="es"></div>
+    </div>
+    <!-- TODO: pedir al propietario el snippet de inserción del widget de
+         búsqueda desde su panel de AvaiBook actual. -->
+  </div>
+</section>
+{% endblock %}

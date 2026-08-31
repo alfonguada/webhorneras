@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Historia - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Descubre la historia familiar y la tradición que dan nombre a nuestros apartamentos en Las Horneras de Cobeta.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Las Horneras de Cobeta</span>
+    <h1>Un viaje al pasado caminando por lo rural</h1>
+    <p style="max-width:56ch;margin:0 auto;">Descubre la historia familiar y la tradición que dan nombre a nuestros apartamentos.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container" style="max-width:78ch;">
+    <div class="note" style="background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-bottom:20px;">
+      <p style="margin:0;font-size:.92rem;color:var(--text-soft);">
+        En la copia archivada de esta página, el texto de presentación y las historias
+        individuales de cada hornera aparecían como marcadores de posición sin rellenar
+        («Explicación del apartamento»). Se conserva la estructura para que el propietario
+        complete los textos reales.
+      </p>
+    </div>
+
+    <p style="color:var(--text-soft);font-style:italic;">[Texto de presentación del alojamiento y su historia — pendiente]</p>
+
+    {% for apto in apartamentos %}
+    <div style="margin-top:36px;">
+      <span class="eyebrow">{{ apto.nombre|upper }}</span>
+      <h3>Historia de {{ apto.nombre }}</h3>
+      <p style="color:var(--text-soft);font-style:italic;">[Pendiente — reutilizar el texto ya disponible en la ficha del apartamento como punto de partida]</p>
+    </div>
+    {% endfor %}
+
+    <div style="margin-top:44px;">
+      <span class="eyebrow">La tradición familiar</span>
+      <h3>El horno que dio origen a todo</h3>
+      <p style="color:var(--text-soft);font-style:italic;">[Pendiente — ver el texto ya escrito en /casa-de-comidas/ como base]</p>
+    </div>
+    <div style="margin-top:24px;">
+      <span class="eyebrow">Legado de las horneras</span>
+      <h3>De las horneras a los apartamentos</h3>
+      <p style="color:var(--text-soft);font-style:italic;">[Pendiente]</p>
+    </div>
+  </div>
+</section>
+
+<section class="block alt text-center">
+  <div class="container">
+    <h2>¿Quieres venir a descubrir el Alto Tajo?</h2>
+    <p>¿Tienes alguna duda?</p>
+    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Contacta con nosotros</a>
+  </div>
+</section>
+{% endblock %}

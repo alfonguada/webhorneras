@@ -56,7 +56,10 @@
 <section class="block alt text-center">
   <div class="container">
     <h2>¿Quieres reservar una mesa?</h2>
-    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Reservar mesa</a>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a class="btn btn-outline" href="{{ url_for('main.carta') }}">Ver la carta</a>
+      <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Reservar mesa</a>
+    </div>
   </div>
 </section>
 {% endblock %}

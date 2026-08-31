@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Comodidades - Las Horneras de Cobeta{% endblock %}
+{% block meta_description %}Compara los 5 apartamentos de Las Horneras de Cobeta: tamaño, ocupación, precio y comodidades de cada uno.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Comparativa</span>
+    <h1>Comodidades</h1>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="tblwrap" style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;min-width:640px;">
+        <thead>
+          <tr style="text-align:left;border-bottom:2px solid var(--line);">
+            <th style="padding:12px;">Apartamento</th>
+            <th style="padding:12px;">Tamaño</th>
+            <th style="padding:12px;">Ocupación</th>
+            <th style="padding:12px;">Desde</th>
+            <th style="padding:12px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for apto in apartamentos %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:12px;"><strong>{{ apto.nombre }}</strong><br><span style="font-size:.82rem;color:var(--text-soft);">{{ apto.resumen }}</span></td>
+            <td style="padding:12px;">{{ apto.m2 }} m²</td>
+            <td style="padding:12px;">{{ apto.ocupacion }}</td>
+            <td style="padding:12px;color:var(--wine);font-family:var(--font-heading);">{{ apto.precio_desde }}€/noche</td>
+            <td style="padding:12px;">
+              <a class="btn btn-outline" style="padding:8px 18px;font-size:.72rem;" href="{{ url_for('main.apartamento_detalle', slug=apto.slug) }}">Ver detalles</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% for apto in apartamentos %}
+    <div style="margin-top:48px;">
+      <h3>{{ apto.nombre }}</h3>
+      <ul class="amenities">
+        {% for item in apto.amenities %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
