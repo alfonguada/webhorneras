@@ -55,7 +55,22 @@
   </div>
 </section>
 
+{% if apto.num_fotos and apto.num_fotos > 1 %}
 <section class="block alt">
+  <div class="container">
+    <h2>Galería</h2>
+    <div class="scroller">
+      {% for n in range(1, apto.num_fotos + 1) %}
+      <img class="round-block" style="flex:0 0 320px;height:220px;object-fit:cover;scroll-snap-align:start;"
+           src="{{ url_for('static', filename='img/apartamentos/%s/%02d.jpg' % (apto.slug, n)) }}"
+           alt="Apartamento {{ apto.nombre }} — foto {{ n }}" loading="lazy">
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="block{% if not (apto.num_fotos and apto.num_fotos > 1) %} alt{% endif %}">
   <div class="container">
     <h2>Otros apartamentos</h2>
     <div class="scroller">

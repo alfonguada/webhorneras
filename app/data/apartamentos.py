@@ -12,7 +12,8 @@ APARTAMENTOS = [
         "m2": 55,
         "ocupacion": "2+2 camas individuales / sofá cama",
         "precio_desde": 100,
-        "imagen": None,  # TODO: sustituir por foto real (no recuperada del archivo)
+        "imagen": None,  # TODO: pendiente de descarga por FTP
+        "num_fotos": 0,
         "descripcion": [
             "Andrea no es solo un lugar para quedarse; es un espacio inclusivo y "
             "accesible para todos. Creado con la movilidad en mente, el apartamento "
@@ -48,7 +49,8 @@ APARTAMENTOS = [
         "m2": 45,
         "ocupacion": "2+2 / sofá cama",
         "precio_desde": 150,
-        "imagen": None,
+        "imagen": None,  # TODO: pendiente de descarga por FTP
+        "num_fotos": 0,
         "descripcion": [
             "Petronila no es solo un apartamento; es una ventana al majestuoso "
             "paisaje que rodea nuestra querida villa. Disfruta de las mejores "
@@ -78,7 +80,8 @@ APARTAMENTOS = [
         "m2": 82,
         "ocupacion": "4+4 / cama doble / sofá cama",
         "precio_desde": 200,
-        "imagen": None,
+        "imagen": "apartamentos/florencia/01.jpg",
+        "num_fotos": 11,
         "descripcion": [
             "En el corazón de su hogar, Florencia siempre tenía hueco para uno "
             "más, al igual que nuestro apartamento de gran capacidad.",
@@ -104,7 +107,8 @@ APARTAMENTOS = [
         "m2": 60,
         "ocupacion": "2+2 / cama doble / sofá cama",
         "precio_desde": 150,
-        "imagen": None,
+        "imagen": None,  # TODO: pendiente de descarga por FTP
+        "num_fotos": 0,
         "descripcion": [
             "Martina es un lugar donde la historia y el romance se entrelazan, "
             "invitándote a enamorarte de la autenticidad y la calidez que lo "
@@ -132,7 +136,8 @@ APARTAMENTOS = [
         "m2": 55,
         "ocupacion": "4+2 / sofá cama / cama doble",
         "precio_desde": 150,
-        "imagen": None,
+        "imagen": "apartamentos/hipolita/01.jpg",
+        "num_fotos": 8,
         "descripcion": [
             "Un apartamento acogedor y sencillo, con vistas al pueblo y situado "
             "sobre el antiguo horno que existía en la propiedad. Hipólita le da "
