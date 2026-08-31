@@ -31,27 +31,29 @@
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Las Horneras de Cobeta">
       </a>
 
-      <nav class="main-nav" id="main-nav">
-        <ul>
-          <li><a href="{{ url_for('main.index') }}">Inicio</a></li>
-          <li><a href="{{ url_for('main.apartamentos') }}">Apartamentos</a></li>
-          <li><a href="{{ url_for('main.casa_de_comidas') }}">Casa de comidas</a></li>
-          <li><a href="{{ url_for('main.catering_rural') }}">Catering Rural</a></li>
-          <li><a href="{{ url_for('main.foodtruck') }}">La Conchi Foodtruck</a></li>
-          <li><a href="{{ url_for('main.entorno') }}">Entorno</a></li>
-          <li><a href="{{ url_for('main.contacto') }}">Contacto</a></li>
-        </ul>
-      </nav>
-
       <div style="display:flex; align-items:center; gap:14px;">
         <div class="gtranslate-wrap" id="google_translate_element"></div>
-        <a class="btn btn-accent header-cta" href="{{ url_for('main.apartamentos') }}">Reserva</a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
+
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <nav class="main-nav" id="main-nav" aria-label="Menú principal">
+    <button class="nav-close" id="nav-close" aria-label="Cerrar menú">&times;</button>
+    <ul>
+      <li><a href="{{ url_for('main.index') }}">Inicio</a></li>
+      <li><a href="{{ url_for('main.apartamentos') }}">Apartamentos</a></li>
+      <li><a href="{{ url_for('main.casa_de_comidas') }}">Casa de comidas</a></li>
+      <li><a href="{{ url_for('main.catering_rural') }}">Catering Rural</a></li>
+      <li><a href="{{ url_for('main.foodtruck') }}">La Conchi Foodtruck</a></li>
+      <li><a href="{{ url_for('main.entorno') }}">Entorno</a></li>
+      <li><a href="{{ url_for('main.contacto') }}">Contacto</a></li>
+      <li><a href="{{ url_for('main.apartamentos') }}">Reserva</a></li>
+    </ul>
+  </nav>
 
   <main>
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -68,41 +70,36 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h4>Las Horneras de Cobeta</h4>
-          <p>{{ config.DIRECCION }}</p>
-          <p>Tel. móvil: <a href="tel:{{ config.TELEFONO }}">{{ config.TELEFONO_VISIBLE }}</a></p>
-          <p><a href="mailto:{{ config.EMAIL_INFO }}">{{ config.EMAIL_INFO }}</a> · <a href="mailto:{{ config.EMAIL_RESERVAS }}">{{ config.EMAIL_RESERVAS }}</a></p>
-          <p>Nº registro: {{ config.NUM_REGISTRO_TURISTICO }} · Clasificación: {{ config.CLASIFICACION }}</p>
-          <div class="social-links">
-            <a href="{{ config.FACEBOOK_URL }}" aria-label="Facebook" target="_blank" rel="noopener">f</a>
-            <a href="{{ config.INSTAGRAM_URL }}" aria-label="Instagram" target="_blank" rel="noopener">ig</a>
-          </div>
-        </div>
-        <div>
-          <h4>Legal</h4>
-          <ul class="footer-links">
-            <li><a href="{{ url_for('main.politica_privacidad') }}">Política de Privacidad</a></li>
-            <li><a href="{{ url_for('main.politica_cookies') }}">Política de Cookies</a></li>
-            <li><a href="{{ url_for('main.regimen_interno') }}">Régimen Interno</a></li>
-            <li><a href="{{ url_for('main.politica_reservas') }}">Política de Reservas</a></li>
-            <li><a href="{{ url_for('main.aviso_legal') }}">Aviso Legal</a></li>
-          </ul>
-        </div>
-        <div id="newsletter">
-          <h4>Suscríbete a nuestra Newsletter</h4>
-          <form class="newsletter-form" method="post" action="{{ url_for('main.newsletter') }}">
-            {{ newsletter_form.hidden_tag() }}
-            {{ newsletter_form.email(placeholder="Correo@ejemplo.es") }}
-            <button class="btn btn-primary" type="submit">Enviar</button>
-          </form>
-        </div>
+    <div class="footer-info">
+      <div class="container footer-grid">
+        <ul class="footer-links">
+          <li><a href="{{ url_for('main.politica_privacidad') }}">Política de Privacidad</a></li>
+          <li><a href="{{ url_for('main.politica_cookies') }}">Política de Cookies</a></li>
+          <li><a href="{{ url_for('main.regimen_interno') }}">Régimen Interno</a></li>
+          <li><a href="{{ url_for('main.politica_reservas') }}">Política de Reservas</a></li>
+          <li><a href="{{ url_for('main.aviso_legal') }}">Aviso Legal</a></li>
+        </ul>
+        <ul class="footer-links footer-links-center">
+          <li>{{ config.DIRECCION }}</li>
+          <li><a href="tel:{{ config.TELEFONO }}">Tel. móvil: {{ config.TELEFONO_VISIBLE }}</a></li>
+          <li><a href="mailto:{{ config.EMAIL_INFO }}">{{ config.EMAIL_INFO }} · {{ config.EMAIL_RESERVAS }}</a></li>
+          <li>Nº registro: {{ config.NUM_REGISTRO_TURISTICO }}</li>
+          <li>Clasificación: {{ config.CLASIFICACION }}</li>
+        </ul>
+        <ul class="footer-links">
+          <li><a href="{{ config.FACEBOOK_URL }}" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="{{ config.INSTAGRAM_URL }}" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
       </div>
-      <div class="footer-bottom">
-        <span>© {{ 2026 }} Las Horneras de Cobeta</span>
-        <span>{{ config.RAZON_SOCIAL }} · NIF {{ config.NIF }}</span>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div class="footer-seo-links">
+          <a href="{{ url_for('main.apartamentos') }}">Apartamentos rurales en el Alto Tajo</a>
+          <a href="{{ url_for('main.casa_de_comidas') }}">Casa de comidas en El Alto Tajo</a>
+          <a href="{{ url_for('main.catering_rural') }}">Catering Rural en el Alto Tajo</a>
+        </div>
+        <span>©Copyright 2026 Las Horneras de Cobeta</span>
       </div>
     </div>
   </footer>
@@ -119,14 +116,27 @@
   </div>
 
   <script>
-    // Menú móvil
+    // Menú lateral (el sitio original abre el menú completo en un panel
+    // lateral desde la izquierda, en escritorio y móvil por igual —
+    // no hay barra de enlaces horizontal).
     (function () {
       var toggle = document.getElementById('nav-toggle');
+      var closeBtn = document.getElementById('nav-close');
+      var overlay = document.getElementById('nav-overlay');
       var nav = document.getElementById('main-nav');
-      toggle.addEventListener('click', function () {
-        var open = nav.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
+      function openNav() {
+        nav.classList.add('open');
+        overlay.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+      function closeNav() {
+        nav.classList.remove('open');
+        overlay.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      toggle.addEventListener('click', openNav);
+      closeBtn.addEventListener('click', closeNav);
+      overlay.addEventListener('click', closeNav);
     })();
 
     // Banner de cookies (equivalente simplificado a Complianz)

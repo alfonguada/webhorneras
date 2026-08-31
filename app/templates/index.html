@@ -179,4 +179,15 @@
   </div>
 </section>
 
+<section class="block text-center" id="newsletter">
+  <div class="container">
+    <h2>Suscríbete a nuestra Newsletter</h2>
+    <form class="newsletter-form newsletter-form-light" method="post" action="{{ url_for('main.newsletter') }}" style="justify-content:center;">
+      {{ newsletter_form.hidden_tag() }}
+      {{ newsletter_form.email(placeholder="Correo@ejemplo.es") }}
+      <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+  </div>
+</section>
+
 {% endblock %}
