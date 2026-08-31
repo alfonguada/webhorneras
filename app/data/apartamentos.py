@@ -6,6 +6,12 @@
 # real del sitio, no un dato correcto. Se obtuvieron los códigos correctos
 # de cada apartamento en vivo desde bookonline.pro/es/properties/95614
 # (el listado público real de Las Horneras en la plataforma de AvaiBook).
+#
+# Fotos: Florencia e Hipólita vienen del FTP (uploads/2018/09, resolución
+# 1024x683). Andrea, Petronila y Martina vienen del listado en vivo de
+# AvaiBook/bookonline.pro (más recientes y de mayor resolución, 1280px) —
+# ambas fuentes son fotos reales de la propiedad, solo con procedencia y
+# fecha distintas; conviene homogeneizar cuando lleguen más fotos del FTP.
 
 APARTAMENTOS = [
     {
@@ -16,8 +22,8 @@ APARTAMENTOS = [
         "m2": 55,
         "ocupacion": "2+2 camas individuales / sofá cama",
         "precio_desde": 100,
-        "imagen": None,  # TODO: pendiente de descarga por FTP
-        "num_fotos": 0,
+        "imagen": "apartamentos/andrea/01.jpg",
+        "num_fotos": 10,
         "descripcion": [
             "Andrea no es solo un lugar para quedarse; es un espacio inclusivo y "
             "accesible para todos. Creado con la movilidad en mente, el apartamento "
@@ -54,8 +60,8 @@ APARTAMENTOS = [
         "m2": 45,
         "ocupacion": "2+2 / sofá cama",
         "precio_desde": 150,
-        "imagen": None,  # TODO: pendiente de descarga por FTP
-        "num_fotos": 0,
+        "imagen": "apartamentos/petronila/01.jpg",
+        "num_fotos": 17,
         "descripcion": [
             "Petronila no es solo un apartamento; es una ventana al majestuoso "
             "paisaje que rodea nuestra querida villa. Disfruta de las mejores "
@@ -114,8 +120,8 @@ APARTAMENTOS = [
         "m2": 60,
         "ocupacion": "2+2 / cama doble / sofá cama",
         "precio_desde": 150,
-        "imagen": None,  # TODO: pendiente de descarga por FTP
-        "num_fotos": 0,
+        "imagen": "apartamentos/martina/01.jpg",
+        "num_fotos": 19,
         "descripcion": [
             "Martina es un lugar donde la historia y el romance se entrelazan, "
             "invitándote a enamorarte de la autenticidad y la calidez que lo "
