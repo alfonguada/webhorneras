@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Error del servidor - Las Horneras de Cobeta{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Error 500</span>
+    <h1>Algo ha ido mal por nuestra parte</h1>
+    <p>Inténtalo de nuevo en unos minutos, o escríbenos directamente.</p>
+    <a class="btn btn-primary" href="{{ url_for('main.index') }}">Volver al inicio</a>
+  </div>
+</section>
+{% endblock %}

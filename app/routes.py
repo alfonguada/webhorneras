@@ -1,21 +1,12 @@
 import logging
 
-from flask import Blueprint, Response, current_app, flash, redirect, render_template, url_for
+from flask import Blueprint, Response, abort, current_app, flash, redirect, render_template, url_for
 
 from app.data.apartamentos import APARTAMENTOS, get_apartamento
 from app.forms import ContactoForm, NewsletterForm
 
 main_bp = Blueprint("main", __name__)
 logger = logging.getLogger(__name__)
-
-
-@main_bp.context_processor
-def inject_globals():
-    """Datos disponibles en todas las plantillas (footer, nav, etc.)."""
-    return {
-        "apartamentos_nav": APARTAMENTOS,
-        "newsletter_form": NewsletterForm(),
-    }
 
 
 @main_bp.route("/")
@@ -32,7 +23,7 @@ def apartamentos():
 def apartamento_detalle(slug):
     apto = get_apartamento(slug)
     if apto is None:
-        return render_template("404.html"), 404
+        abort(404)
     otros = [a for a in APARTAMENTOS if a["slug"] != slug]
     return render_template("apartamento_detalle.html", apto=apto, otros=otros)
 
