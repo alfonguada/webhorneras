@@ -51,33 +51,20 @@
 </head>
 <body>
 
+  <!-- Google Translate real, oculto: solo usamos su <select> internamente -->
+  <div id="google_translate_element" class="goog-te-hidden" aria-hidden="true"></div>
+
   <header class="site-header">
-    <div class="container">
-      <a class="brand" href="{{ url_for('main.index') }}">
+    <div class="container site-header-grid">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a class="brand brand-center" href="{{ url_for('main.index') }}">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Las Horneras de Cobeta">
       </a>
 
-      <div style="display:flex; align-items:center; gap:10px;">
-        <!-- Google Translate real, oculto: solo usamos su <select> internamente -->
-        <div id="google_translate_element" class="goog-te-hidden" aria-hidden="true"></div>
-
-        <div class="lang-switch notranslate" id="lang-switch" translate="no">
-          <button class="lang-switch-btn" id="lang-switch-btn" aria-haspopup="true" aria-expanded="false">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-            <span id="lang-switch-current">ES</span>
-          </button>
-          <ul class="lang-switch-menu" id="lang-switch-menu" hidden>
-            <li><button type="button" data-lang="es">Español</button></li>
-            <li><button type="button" data-lang="en">English</button></li>
-            <li><button type="button" data-lang="fr">Français</button></li>
-            <li><button type="button" data-lang="de">Deutsch</button></li>
-          </ul>
-        </div>
-
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <a class="header-reserva" href="{{ url_for('main.apartamentos') }}">Reserva</a>
     </div>
   </header>
 
@@ -92,8 +79,20 @@
       <li><a href="{{ url_for('main.foodtruck') }}">La Conchi Foodtruck</a></li>
       <li><a href="{{ url_for('main.entorno') }}">Entorno</a></li>
       <li><a href="{{ url_for('main.contacto') }}">Contacto</a></li>
-      <li><a href="{{ url_for('main.apartamentos') }}">Reserva</a></li>
     </ul>
+
+    <div class="lang-switch notranslate" id="lang-switch" translate="no">
+      <button class="lang-switch-btn" id="lang-switch-btn" aria-haspopup="true" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        <span id="lang-switch-current">Español</span>
+      </button>
+      <ul class="lang-switch-menu" id="lang-switch-menu" hidden>
+        <li><button type="button" data-lang="es">Español</button></li>
+        <li><button type="button" data-lang="en">English</button></li>
+        <li><button type="button" data-lang="fr">Français</button></li>
+        <li><button type="button" data-lang="de">Deutsch</button></li>
+      </ul>
+    </div>
   </nav>
 
   <main>
@@ -257,7 +256,7 @@
       menu.querySelectorAll('button[data-lang]').forEach(function (item) {
         item.addEventListener('click', function () {
           var lang = item.getAttribute('data-lang');
-          current.textContent = lang.toUpperCase();
+          current.textContent = item.textContent;
           closeMenu();
 
           // Busca el <select> real que inyecta Google y dispara el cambio.
