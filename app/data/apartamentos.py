@@ -51,6 +51,14 @@ APARTAMENTOS = [
         "avaibook_widget_full": "141897",
         "avaibook_widget_mini": "141971",
         "avaibook_cod_alojamiento": "371207",
+        "historia": (
+            "Andrea nos acompañó hasta el año 2023: una mujer fuerte y luchadora "
+            "que siempre nos arrancaba una sonrisa. Vio cómo su rutina cambiaba "
+            "cuando necesitó una silla de ruedas para el resto de su vida, y "
+            "nunca dejó de enfrentarse a los cambios con la misma entereza. Este "
+            "apartamento, adaptado en su totalidad, es un homenaje a la abuela "
+            "Andrea y a todos los que, como ella, tienen necesidades diferentes."
+        ),
     },
     {
         "slug": "petronila",
@@ -83,6 +91,13 @@ APARTAMENTOS = [
         "avaibook_widget_full": "141898",
         "avaibook_widget_mini": "141967",
         "avaibook_cod_alojamiento": "370830",
+        "historia": (
+            "Petronila da nombre al apartamento con las mejores vistas de la "
+            "casa: el pueblo, la vega y las antiguas eras de Cobeta se despliegan "
+            "ante la ventana, la misma estampa que ella contemplaba cada día. Un "
+            "espacio de techos altos e intimidad, pensado para acercarse a los "
+            "que más se quiere — igual que hacía ella."
+        ),
     },
     {
         "slug": "florencia",
@@ -111,6 +126,13 @@ APARTAMENTOS = [
         "avaibook_widget_full": "141899",
         "avaibook_widget_mini": "141968",
         "avaibook_cod_alojamiento": "370831",
+        "historia": (
+            "En el corazón de su hogar, Florencia siempre tenía hueco para uno "
+            "más. Así era ella: acogedora, generosa, con la puerta abierta para "
+            "quien llegara. El apartamento que lleva su nombre hereda esa "
+            "vocación — amplio, de techos altos y capacidad ampliable, para que "
+            "nadie se quede fuera cuando se viaja en familia o con amigos."
+        ),
     },
     {
         "slug": "martina",
@@ -141,6 +163,13 @@ APARTAMENTOS = [
         "avaibook_widget_full": "141901",
         "avaibook_widget_mini": "141969",
         "avaibook_cod_alojamiento": "371205",
+        "historia": (
+            "Conocida como \"La Serrana\", Martina da nombre a un rincón donde "
+            "la historia y el romance se entrelazan. El apartamento conserva ese "
+            "carácter entrañable en cada detalle, desde la celosía de madera del "
+            "baño hasta la bañera a los pies de la cama, invitando a vivir aquí "
+            "tu propia historia de amor."
+        ),
     },
     {
         "slug": "hipolita",
@@ -169,6 +198,13 @@ APARTAMENTOS = [
         "avaibook_widget_full": "141902",
         "avaibook_widget_mini": "141970",
         "avaibook_cod_alojamiento": "371206",
+        "historia": (
+            "Hipólita fue una hornera cariñosa y familiar, y así es el "
+            "apartamento que lleva su nombre: acogedor, sencillo y luminoso, "
+            "construido sobre el antiguo horno que existía en la propiedad. Un "
+            "espacio pensado para familias y grupos de amigos, con vistas al "
+            "Castillo de Cobeta, tal y como ella los recibía en su día."
+        ),
     },
 ]
 

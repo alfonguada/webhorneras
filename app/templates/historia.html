@@ -14,35 +14,28 @@
 
 <section class="block">
   <div class="container" style="max-width:78ch;">
-    <div class="note" style="background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-bottom:20px;">
-      <p style="margin:0;font-size:.92rem;color:var(--text-soft);">
-        En la copia archivada de esta página, el texto de presentación y las historias
-        individuales de cada hornera aparecían como marcadores de posición sin rellenar
-        («Explicación del apartamento»). Se conserva la estructura para que el propietario
-        complete los textos reales.
-      </p>
+    <p>Las horneras eran las mujeres de Cobeta que, generación tras generación, cocían el pan en el horno de leña del pueblo. Con sus manos y el calor del fuego alimentaban a toda una comunidad. Este proyecto — los apartamentos, la casa de comidas, cada rincón de Las Horneras de Cobeta — nace para honrar su memoria y mantener viva la tradición que empezó con ellas.</p>
+
+    <div style="margin-top:36px;">
+      <span class="eyebrow">La tradición familiar</span>
+      <h3>El horno que dio origen a todo</h3>
+      <p>El horno de leña que hoy sigue encendido en nuestra <a href="{{ url_for('main.casa_de_comidas') }}">Casa de Comidas</a> no es un elemento decorativo: es el corazón y el origen de todo. Aquí cocían el pan las abuelas del pueblo, las verdaderas horneras de Cobeta. En su honor nace este proyecto, que mantiene viva la tradición del horno de leña y de la cocina hecha con alma, generación tras generación.</p>
     </div>
 
-    <p style="color:var(--text-soft);font-style:italic;">[Texto de presentación del alojamiento y su historia — pendiente]</p>
+    <div style="margin-top:44px;">
+      <span class="eyebrow">Legado de las horneras</span>
+      <h3>De las horneras a los apartamentos</h3>
+      <p>Cada uno de nuestros cinco apartamentos lleva el nombre de una hornera real, una mujer que dejó su huella en Cobeta y en nuestra familia. Así, su legado sigue vivo en cada estancia, en cada detalle pensado con el mismo cariño con el que ellas amasaban el pan.</p>
+    </div>
 
     {% for apto in apartamentos %}
     <div style="margin-top:36px;">
       <span class="eyebrow">{{ apto.nombre|upper }}</span>
       <h3>Historia de {{ apto.nombre }}</h3>
-      <p style="color:var(--text-soft);font-style:italic;">[Pendiente — reutilizar el texto ya disponible en la ficha del apartamento como punto de partida]</p>
+      <p>{{ apto.historia }}</p>
+      <a href="{{ url_for('main.apartamento_detalle', slug=apto.slug) }}">Descubre el apartamento {{ apto.nombre }} &rarr;</a>
     </div>
     {% endfor %}
-
-    <div style="margin-top:44px;">
-      <span class="eyebrow">La tradición familiar</span>
-      <h3>El horno que dio origen a todo</h3>
-      <p style="color:var(--text-soft);font-style:italic;">[Pendiente — ver el texto ya escrito en /casa-de-comidas/ como base]</p>
-    </div>
-    <div style="margin-top:24px;">
-      <span class="eyebrow">Legado de las horneras</span>
-      <h3>De las horneras a los apartamentos</h3>
-      <p style="color:var(--text-soft);font-style:italic;">[Pendiente]</p>
-    </div>
   </div>
 </section>
 
