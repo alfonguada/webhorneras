@@ -130,14 +130,14 @@
 
 <section class="block alt">
   <div class="container two-col">
-    <div class="round-block" style="background:linear-gradient(135deg,var(--accent),var(--accent-dark)); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:var(--accent-ink); font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
-      Foto del restaurante<br>(pendiente de sustituir)
+    <div class="round-block">
+      <img src="{{ url_for('static', filename='img/restaurante-home.jpg') }}" alt="Comedor de la Casa de Comidas Las Horneras" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;">
     </div>
     <div>
       <span class="eyebrow">El Restaurante</span>
       <h2>Sabores tradicionales en cada plato</h2>
       <p>Redescubra la cocina rural en su forma más sofisticada. Nuestro enfoque combina la autenticidad del horno de leña y las recetas ancestrales con técnicas culinarias modernas, creando platos que son una verdadera obra de arte. Los productos de cercanía se transforman bajo la visión innovadora de nuestros chefs.</p>
-      <a class="btn btn-primary" href="{{ url_for('main.casa_de_comidas') }}">View restaurant</a>
+      <a class="btn btn-primary" href="{{ url_for('main.casa_de_comidas') }}">Ver restaurante</a>
     </div>
   </div>
 </section>
