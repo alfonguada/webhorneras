@@ -2,6 +2,12 @@
 
 {% block title %}Historia - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Descubre la historia familiar y la tradición que dan nombre a nuestros apartamentos en Las Horneras de Cobeta.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/historia-horno.jpg', _external=True) }}{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Historia", request.url)]) }}
+{% endblock %}
 
 {% block content %}
 <section class="page-hero">

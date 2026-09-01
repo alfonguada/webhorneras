@@ -2,6 +2,12 @@
 
 {% block title %}Entorno - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Descubre la magia del Alto Tajo: Cobeta y sus tesoros naturales. Parque Natural, Geoparque, senderismo y pueblos con encanto.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/entorno-hero.jpg', _external=True) }}{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Entorno", request.url)]) }}
+{% endblock %}
 
 {% block content %}
 <section class="page-hero">

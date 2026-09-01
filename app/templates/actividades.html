@@ -2,6 +2,12 @@
 
 {% block title %}Actividades - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Actividades en el Alto Tajo: visita guiada a Cobeta, resinero por un día, salida al campo y el retorno de los grandes herbívoros.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/entorno-senderos.jpg', _external=True) }}{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Actividades", request.url)]) }}
+{% endblock %}
 
 {% block content %}
 {% set actividades = [

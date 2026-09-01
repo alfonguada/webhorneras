@@ -2,7 +2,36 @@
 
 {% block title %}Casa de comidas - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Casa de comidas en Cobeta: cocina tradicional al horno de leña, asados y platos caseros para recoger, producto de cercanía.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/casa-comidas-hero.jpg', _external=True) }}{% endblock %}
 {% block body_class %}page-restaurante{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Casa de comidas", request.url)]) }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Las Horneras de Cobeta — Casa de Comidas",
+  "image": "{{ url_for('static', filename='img/casa-comidas-hero.jpg', _external=True) }}",
+  "url": "{{ request.url }}",
+  "telephone": "+34{{ config.TELEFONO }}",
+  "email": "{{ config.EMAIL_INFO }}",
+  "servesCuisine": "Cocina tradicional española, horno de leña",
+  "priceRange": "€€",
+  "acceptsReservations": "True",
+  "menu": "{{ url_for('main.carta', _external=True) }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Castillo, s/n",
+    "addressLocality": "Cobeta",
+    "addressRegion": "Guadalajara",
+    "postalCode": "19443",
+    "addressCountry": "ES"
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <section class="page-hero">

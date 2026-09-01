@@ -3,6 +3,11 @@
 {% block title %}Disponibilidad - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Comprueba la disponibilidad de los apartamentos rurales de Las Horneras de Cobeta.{% endblock %}
 
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Disponibilidad", request.url)]) }}
+{% endblock %}
+
 {% block content %}
 <section class="page-hero">
   <div class="container">

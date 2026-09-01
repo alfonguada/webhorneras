@@ -2,6 +2,28 @@
 
 {% block title %}Apartamentos - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Cinco apartamentos rurales en Cobeta, Guadalajara, todos diferentes, diseñados para disfrutar de toda una experiencia en el Alto Tajo.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/' ~ apartamentos[0].imagen, _external=True) }}{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Apartamentos", request.url)]) }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {% for apto in apartamentos %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "{{ url_for('main.apartamento_detalle', slug=apto.slug, _external=True) }}",
+      "name": "{{ apto.nombre }} — Las Horneras de Cobeta"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <section class="page-hero">

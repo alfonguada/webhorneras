@@ -3,6 +3,11 @@
 {% block title %}Comodidades - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Compara los 5 apartamentos de Las Horneras de Cobeta: tamaño, ocupación, precio y comodidades de cada uno.{% endblock %}
 
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Apartamentos", url_for('main.apartamentos', _external=True)), ("Comodidades", request.url)]) }}
+{% endblock %}
+
 {% block content %}
 <section class="page-hero">
   <div class="container">

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Las Horneras de Cobeta{% endblock %}
+{% block title %}Las Horneras de Cobeta — Apartamentos Rurales en el Alto Tajo, Guadalajara{% endblock %}
 {% block meta_description %}Cobeta: Refugio y Aventura, en los susurros del Alto Tajo, descubre, vive, enamórate. Apartamentos rurales, casa de comidas y catering en el Parque Natural del Alto Tajo.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/hero-home.jpg', _external=True) }}{% endblock %}
 
 {% block structured_data %}
 <script type="application/ld+json">

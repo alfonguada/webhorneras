@@ -2,8 +2,11 @@
 
 {% block title %}{{ apto.nombre }} - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}{{ apto.subtitulo }} en Las Horneras de Cobeta. {{ apto.m2 }} m², {{ apto.ocupacion }}, desde {{ apto.precio_desde }}€/día.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/' ~ apto.imagen, _external=True) }}{% endblock %}
 
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
 {% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Apartamentos", url_for('main.apartamentos', _external=True)), (apto.nombre, request.url)]) }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

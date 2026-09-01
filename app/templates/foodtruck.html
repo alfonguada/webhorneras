@@ -2,6 +2,37 @@
 
 {% block title %}La Conchi Foodtruck - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}La Conchi Foodtruck: cocina tradicional allá donde nos necesites. Eventos privados, fiestas populares, empresas, bodas. Alquiler de foodtruck desde 200€/día.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/foodtruck-equipo.jpg', _external=True) }}{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("La Conchi Foodtruck", request.url)]) }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Alquiler de foodtruck y catering itinerante",
+  "name": "La Conchi Foodtruck — Las Horneras de Cobeta",
+  "url": "{{ request.url }}",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Guadalajara y provincia"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Las Horneras de Cobeta",
+    "telephone": "+34{{ config.TELEFONO }}",
+    "email": "{{ config.EMAIL_INFO }}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "200",
+    "priceCurrency": "EUR",
+    "description": "Alquiler de foodtruck por día"
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <section class="hero" style="--hero-img:url('{{ url_for('static', filename='img/foodtruck-equipo.jpg') }}');">

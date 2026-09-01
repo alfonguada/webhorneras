@@ -1,0 +1,18 @@
+{% macro schema(items) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {% for name, url in items %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "name": "{{ name }}"{% if url %},
+      "item": "{{ url }}"{% endif %}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endmacro %}

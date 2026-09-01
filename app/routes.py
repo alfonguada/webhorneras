@@ -213,23 +213,94 @@ def robots_txt():
     return Response("\n".join(lines), mimetype="text/plain")
 
 
+# (endpoint, changefreq, priority) — páginas de producto/venta primero,
+# contenido de apoyo después, legales al final con prioridad mínima.
+_SITEMAP_ENDPOINTS = [
+    ("main.index", "daily", "1.0"),
+    ("main.apartamentos", "weekly", "0.9"),
+    ("main.casa_de_comidas", "weekly", "0.9"),
+    ("main.catering_rural", "weekly", "0.8"),
+    ("main.foodtruck", "weekly", "0.8"),
+    ("main.carta", "daily", "0.7"),
+    ("main.comodidades", "monthly", "0.6"),
+    ("main.disponibilidad", "weekly", "0.6"),
+    ("main.entorno", "monthly", "0.6"),
+    ("main.actividades", "monthly", "0.6"),
+    ("main.historia", "monthly", "0.5"),
+    ("main.contacto", "monthly", "0.5"),
+    ("main.aviso_legal", "yearly", "0.2"),
+    ("main.politica_privacidad", "yearly", "0.2"),
+    ("main.politica_cookies", "yearly", "0.2"),
+    ("main.politica_reservas", "yearly", "0.2"),
+    ("main.regimen_interno", "yearly", "0.2"),
+]
+
+
 @main_bp.route("/sitemap.xml")
 def sitemap_xml():
-    static_endpoints = [
-        "main.index", "main.apartamentos", "main.comodidades",
-        "main.casa_de_comidas", "main.carta", "main.catering_rural",
-        "main.foodtruck", "main.entorno", "main.actividades",
-        "main.disponibilidad", "main.historia", "main.contacto",
-        "main.aviso_legal", "main.politica_privacidad",
-        "main.politica_cookies", "main.politica_reservas",
-        "main.regimen_interno",
+    entries = [
+        (url_for(ep, _external=True), changefreq, priority)
+        for ep, changefreq, priority in _SITEMAP_ENDPOINTS
     ]
-    urls = [url_for(ep, _external=True) for ep in static_endpoints]
-    urls += [
-        url_for("main.apartamento_detalle", slug=a["slug"], _external=True)
+    entries += [
+        (url_for("main.apartamento_detalle", slug=a["slug"], _external=True), "weekly", "0.9")
         for a in APARTAMENTOS
     ]
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    xml += [f"  <url><loc>{u}</loc></url>" for u in urls]
+    xml += [
+        f"  <url><loc>{loc}</loc><changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>"
+        for loc, changefreq, priority in entries
+    ]
     xml.append("</urlset>")
     return Response("\n".join(xml), mimetype="application/xml")
+
+
+@main_bp.route("/llms.txt")
+def llms_txt():
+    """Resumen del sitio en formato llms.txt (llmstxt.org) para que los
+    sistemas de IA (ChatGPT, Perplexity, Google AI Overviews...) puedan
+    citar a Las Horneras de Cobeta con datos correctos y actualizados."""
+    lines = [
+        "# Las Horneras de Cobeta",
+        "",
+        "> Apartamentos rurales, casa de comidas y catering rural en Cobeta, "
+        "Guadalajara, dentro del Parque Natural del Alto Tajo (España).",
+        "",
+        "Las Horneras de Cobeta es un alojamiento rural de 5 apartamentos "
+        f"(Andrea, Petronila, Florencia, Martina e Hipólita) situado en {current_app.config['DIRECCION']}, "
+        "que incluye una casa de comidas con cocina tradicional al horno de leña, "
+        "un servicio de catering rural para bodas, comuniones, bautizos y eventos, "
+        "y una foodtruck itinerante (La Conchi) disponible para alquiler.",
+        "",
+        f"Teléfono: {current_app.config['TELEFONO_VISIBLE']} · "
+        f"Email: {current_app.config['EMAIL_INFO']} · "
+        f"Nº de registro turístico: {current_app.config['NUM_REGISTRO_TURISTICO']} · "
+        f"Clasificación: {current_app.config['CLASIFICACION']}",
+        "",
+        "## Alojamiento",
+        f"- [Apartamentos]({url_for('main.apartamentos', _external=True)}): los 5 apartamentos rurales, con tamaño, ocupación y precio desde.",
+    ]
+    lines += [
+        f"- [{a['nombre']}]({url_for('main.apartamento_detalle', slug=a['slug'], _external=True)}): "
+        f"{a['subtitulo']} — {a['m2']} m², {a['ocupacion']}, desde {a['precio_desde']}€/día."
+        for a in APARTAMENTOS
+    ]
+    lines += [
+        f"- [Comodidades]({url_for('main.comodidades', _external=True)}): comparativa de los 5 apartamentos.",
+        f"- [Disponibilidad]({url_for('main.disponibilidad', _external=True)}): buscador de fechas y reserva online (AvaiBook).",
+        "",
+        "## Gastronomía",
+        f"- [Casa de Comidas]({url_for('main.casa_de_comidas', _external=True)}): restaurante con cocina tradicional al horno de leña, asados y platos caseros para recoger. Reserva de mesa online, por WhatsApp o por teléfono.",
+        f"- [Carta]({url_for('main.carta', _external=True)}): carta, menú de asado, carta de vinos, bebidas y postres, y menú para llevar.",
+        f"- [Catering Rural]({url_for('main.catering_rural', _external=True)}): catering para bodas, comuniones, bautizos, eventos de empresa y comidas populares en Cobeta y el Alto Tajo. Presupuesto personalizado por formulario.",
+        f"- [La Conchi Foodtruck]({url_for('main.foodtruck', _external=True)}): foodtruck de cocina tradicional para eventos, ferias y acciones promocionales; alquiler desde 200€/día.",
+        "",
+        "## Entorno y experiencias",
+        f"- [Entorno]({url_for('main.entorno', _external=True)}): Cobeta, el Alto Tajo, miradores, rutas de senderismo y pueblos cercanos (Molina de Aragón, Ablanque, Olmeda de Cobeta).",
+        f"- [Actividades]({url_for('main.actividades', _external=True)}): visita guiada a Cobeta, resinero por un día, salida al campo, retorno de los grandes herbívoros.",
+        f"- [Historia]({url_for('main.historia', _external=True)}): el origen del nombre «Las Horneras» y la historia de cada una de las cinco horneras que dan nombre a los apartamentos.",
+        "",
+        "## Contacto",
+        f"- [Contacto]({url_for('main.contacto', _external=True)}): formulario de contacto, ubicación y datos de la empresa.",
+    ]
+    return Response("\n".join(lines), mimetype="text/plain")

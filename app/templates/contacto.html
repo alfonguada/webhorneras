@@ -3,6 +3,11 @@
 {% block title %}Contacto - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Contacta con Las Horneras de Cobeta: Calle Castillo, s/n, 19443 Cobeta (Guadalajara). Tel. +34 621 240 349.{% endblock %}
 
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Contacto", request.url)]) }}
+{% endblock %}
+
 {% block content %}
 <section class="page-hero">
   <div class="container">

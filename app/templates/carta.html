@@ -2,7 +2,29 @@
 
 {% block title %}Carta - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}La carta de la Casa de Comidas de Las Horneras de Cobeta: cocina tradicional al horno de leña, la parrilla y el puchero.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/casa-comidas-plato.jpg', _external=True) }}{% endblock %}
 {% block body_class %}page-restaurante{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Casa de comidas", url_for('main.casa_de_comidas', _external=True)), ("Carta", request.url)]) }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Carta de Las Horneras de Cobeta",
+  "url": "{{ request.url }}",
+  "inLanguage": "es",
+  "hasMenuSection": [
+    { "@type": "MenuSection", "name": "Carta" },
+    { "@type": "MenuSection", "name": "Menú de Asado" },
+    { "@type": "MenuSection", "name": "Carta de Vinos" },
+    { "@type": "MenuSection", "name": "Bebidas y Postres" },
+    { "@type": "MenuSection", "name": "Para Llevar" }
+  ]
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <section class="page-hero">

@@ -2,7 +2,36 @@
 
 {% block title %}Catering Rural - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}El mejor catering rural para tu evento: bodas, comuniones, bautizos y comidas populares con auténtico sabor tradicional, en Cobeta y el Alto Tajo.{% endblock %}
+{% block og_image %}{{ url_for('static', filename='img/catering-hero.jpg', _external=True) }}{% endblock %}
 {% block body_class %}page-catering{% endblock %}
+
+{% from "macros/breadcrumbs.html" import schema as breadcrumb_schema %}
+{% block structured_data %}
+{{ breadcrumb_schema([("Inicio", url_for('main.index', _external=True)), ("Catering Rural", request.url)]) }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Catering rural para eventos",
+  "name": "Catering Rural — Las Horneras de Cobeta",
+  "url": "{{ request.url }}",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Cobeta, Guadalajara y el Alto Tajo"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Las Horneras de Cobeta",
+    "telephone": "+34{{ config.TELEFONO }}",
+    "email": "{{ config.EMAIL_INFO }}"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Bodas, comuniones, bautizos, eventos de empresa y comidas populares"
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <section class="hero" style="--hero-img:url('{{ url_for('static', filename='img/catering-hero.jpg') }}');">

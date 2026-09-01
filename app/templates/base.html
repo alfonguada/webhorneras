@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Las Horneras de Cobeta{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Apartamentos rurales, casa de comidas y catering en Cobeta, Guadalajara, en pleno Parque Natural del Alto Tajo.{% endblock %}">
+  <link rel="canonical" href="{% block canonical %}{{ request.base_url }}{% endblock %}">
+  {% block robots_meta %}{% endblock %}
 
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
   <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
