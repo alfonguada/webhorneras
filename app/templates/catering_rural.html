@@ -5,7 +5,7 @@
 {% block body_class %}page-catering{% endblock %}
 
 {% block content %}
-<section class="hero" style="--hero-img:linear-gradient(135deg,#3E5B53,#892946);">
+<section class="hero" style="--hero-img:url('{{ url_for('static', filename='img/catering-hero.jpg') }}');">
   <div class="container">
     <span class="eyebrow" style="color:#E7CBD3;">Las Horneras</span>
     <h1>Catering Rural</h1>

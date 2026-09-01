@@ -18,16 +18,16 @@
       <h2>Casa de comidas</h2>
       <p>En el corazón de Cobeta se encuentra nuestra Casa de Comidas, un lugar donde la tradición y el sabor se dan la mano. Inspirada en las antiguas horneras del pueblo, esta casa es un homenaje a la cocina de siempre, la que se hace con tiempo, producto local y mucho cariño.</p>
     </div>
-    <div class="round-block" style="background:linear-gradient(135deg,var(--wine),#6e1f38); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
-      Foto del comedor<br>(pendiente de sustituir)
+    <div class="round-block">
+      <img src="{{ url_for('static', filename='img/casa-comidas-hero.jpg') }}" alt="Plato de la Casa de Comidas Las Horneras" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;">
     </div>
   </div>
 </section>
 
 <section class="block alt">
   <div class="container two-col">
-    <div class="round-block" style="background:linear-gradient(135deg,var(--sage),var(--sage-dark)); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
-      Foto del horno de leña<br>(pendiente de sustituir)
+    <div class="round-block">
+      <img src="{{ url_for('static', filename='img/casa-comidas-horno.jpg') }}" alt="Plato al horno de leña de Las Horneras" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;">
     </div>
     <div>
       <span class="eyebrow">Asados y comida casera para recoger</span>
