@@ -166,6 +166,20 @@ section.block.alt { background: var(--offwhite); }
 .circle-img { border-radius: 999px; aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
 .round-block { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 
+/* Collage de dos fotos superpuestas, como en "El Edificio" del original */
+.edificio-collage { position: relative; padding-bottom: 40px; padding-right: 40px; }
+.edificio-collage-main {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius);
+  box-shadow: var(--shadow); display: block;
+}
+.edificio-collage-accent {
+  position: absolute; right: 0; bottom: 0; width: 45%; aspect-ratio: 1/1; object-fit: cover;
+  border-radius: var(--radius); box-shadow: var(--shadow); border: 6px solid var(--white);
+}
+@media (max-width: 640px) {
+  .edificio-collage { padding-bottom: 30px; padding-right: 26px; }
+}
+
 /* ---------- apartment cards / carousel ---------- */
 .scroller {
   display: flex; gap: 22px; overflow-x: auto; padding: 8px 4px 24px;
