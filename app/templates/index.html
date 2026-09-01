@@ -130,7 +130,7 @@
 
 <section class="block alt">
   <div class="container two-col">
-    <div class="round-block" style="background:linear-gradient(135deg,var(--wine),#6e1f38); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
+    <div class="round-block" style="background:linear-gradient(135deg,var(--accent),var(--accent-dark)); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:var(--accent-ink); font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
       Foto del restaurante<br>(pendiente de sustituir)
     </div>
     <div>
@@ -150,8 +150,8 @@
       <p>Sumérjase en un mundo de experiencias auténticas. Desde turismo de observación hasta la inmersión en tradiciones centenarias, cada actividad está diseñada para conectarle con la esencia de nuestra tierra en Cobeta y el Alto Tajo.</p>
       <a class="btn btn-primary" href="{{ url_for('main.actividades') }}">Ver Actividades</a>
     </div>
-    <div class="round-block" style="background:linear-gradient(135deg,var(--gold),#8C8154); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.4rem; text-align:center; padding:20px;">
-      Foto de actividades<br>(pendiente de sustituir)
+    <div class="round-block">
+      <img src="{{ url_for('static', filename='img/experiencias-home.jpg') }}" alt="Vistas de Cobeta y el Alto Tajo al atardecer" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;">
     </div>
   </div>
 </section>

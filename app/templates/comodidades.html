@@ -30,7 +30,7 @@
             <td style="padding:12px;"><strong>{{ apto.nombre }}</strong><br><span style="font-size:.82rem;color:var(--text-soft);">{{ apto.resumen }}</span></td>
             <td style="padding:12px;">{{ apto.m2 }} m²</td>
             <td style="padding:12px;">{{ apto.ocupacion }}</td>
-            <td style="padding:12px;color:var(--wine);font-family:var(--font-heading);">{{ apto.precio_desde }}€/noche</td>
+            <td style="padding:12px;color:var(--accent-dark);font-family:var(--font-heading);">{{ apto.precio_desde }}€/noche</td>
             <td style="padding:12px;">
               <a class="btn btn-outline" style="padding:8px 18px;font-size:.72rem;" href="{{ url_for('main.apartamento_detalle', slug=apto.slug) }}">Ver detalles</a>
             </td>

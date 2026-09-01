@@ -49,7 +49,7 @@
   {% block structured_data %}{% endblock %}
   {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
   <!-- Google Translate real, oculto: solo usamos su <select> internamente -->
   <div id="google_translate_element" class="goog-te-hidden" aria-hidden="true"></div>
@@ -111,35 +111,50 @@
 
   <footer class="site-footer">
     <div class="footer-info">
-      <div class="container footer-grid">
-        <ul class="footer-links">
-          <li><a href="{{ url_for('main.politica_privacidad') }}">Política de Privacidad</a></li>
-          <li><a href="{{ url_for('main.politica_cookies') }}">Política de Cookies</a></li>
-          <li><a href="{{ url_for('main.regimen_interno') }}">Régimen Interno</a></li>
-          <li><a href="{{ url_for('main.politica_reservas') }}">Política de Reservas</a></li>
-          <li><a href="{{ url_for('main.aviso_legal') }}">Aviso Legal</a></li>
-        </ul>
-        <ul class="footer-links footer-links-center">
-          <li>{{ config.DIRECCION }}</li>
-          <li><a href="tel:{{ config.TELEFONO }}">Tel. móvil: {{ config.TELEFONO_VISIBLE }}</a></li>
-          <li><a href="mailto:{{ config.EMAIL_INFO }}">{{ config.EMAIL_INFO }} · {{ config.EMAIL_RESERVAS }}</a></li>
-          <li>Nº registro: {{ config.NUM_REGISTRO_TURISTICO }}</li>
-          <li>Clasificación: {{ config.CLASIFICACION }}</li>
-        </ul>
-        <ul class="footer-links">
-          <li><a href="{{ config.FACEBOOK_URL }}" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="{{ config.INSTAGRAM_URL }}" target="_blank" rel="noopener">Instagram</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
+      <div class="container">
+        <a class="footer-logo" href="{{ url_for('main.index') }}">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Las Horneras de Cobeta">
+        </a>
+
+        <div class="footer-grid">
+          <ul class="footer-links">
+            <li><a href="{{ url_for('main.politica_privacidad') }}">Política de Privacidad</a></li>
+            <li><a href="{{ url_for('main.politica_cookies') }}">Política de Cookies</a></li>
+            <li><a href="{{ url_for('main.regimen_interno') }}">Régimen Interno</a></li>
+            <li><a href="{{ url_for('main.politica_reservas') }}">Política de Reservas</a></li>
+            <li><a href="{{ url_for('main.aviso_legal') }}">Aviso Legal</a></li>
+          </ul>
+          <ul class="footer-links footer-links-center">
+            <li>{{ config.RAZON_SOCIAL }}, {{ config.DIRECCION }}</li>
+            <li><a href="tel:{{ config.TELEFONO }}">Tel. Móvil: {{ config.TELEFONO_VISIBLE }}</a></li>
+            <li><a href="mailto:{{ config.EMAIL_INFO }}">{{ config.EMAIL_INFO }} {{ config.EMAIL_RESERVAS }}</a></li>
+            <li>Nº registro: {{ config.NUM_REGISTRO_TURISTICO }}</li>
+            <li>Clasificación: {{ config.CLASIFICACION }}</li>
+          </ul>
+          <ul class="footer-links">
+            <li><a href="{{ config.FACEBOOK_URL }}" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="{{ config.INSTAGRAM_URL }}" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+
         <div class="footer-seo-links">
           <a href="{{ url_for('main.apartamentos') }}">Apartamentos rurales en el Alto Tajo</a>
           <a href="{{ url_for('main.casa_de_comidas') }}">Casa de comidas en El Alto Tajo</a>
           <a href="{{ url_for('main.catering_rural') }}">Catering Rural en el Alto Tajo</a>
         </div>
-        <span>©Copyright 2026 Las Horneras de Cobeta</span>
+
+        <div class="footer-badges">
+          <img src="{{ url_for('static', filename='img/badge-molina.png') }}" alt="Comarca Molina - Alto Tajo">
+          <img src="{{ url_for('static', filename='img/badge-ue-feader.gif') }}" alt="Unión Europea - Fondo Europeo Agrícola de Desarrollo Rural">
+          <img src="{{ url_for('static', filename='img/badge-ministerio.jpg') }}" alt="Gobierno de España - Ministerio de Agricultura, Pesca y Alimentación">
+          <img src="{{ url_for('static', filename='img/badge-castilla-mancha.png') }}" alt="Junta de Comunidades de Castilla-La Mancha">
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>©Copyright 2026</span>
+        <span>Las Horneras de Cobeta</span>
       </div>
     </div>
   </footer>
