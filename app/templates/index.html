@@ -3,6 +3,41 @@
 {% block title %}Home - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}Cobeta: Refugio y Aventura, en los susurros del Alto Tajo, descubre, vive, enamórate. Apartamentos rurales, casa de comidas y catering en el Parque Natural del Alto Tajo.{% endblock %}
 
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué servicios reúne la home de Las Horneras de Cobeta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La home reúne de forma natural el alojamiento rural con cinco apartamentos, la casa de comidas con cocina de raíz y la línea de catering rural para eventos en Cobeta, Guadalajara y el entorno del Alto Tajo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dónde está ubicado el alojamiento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las Horneras de Cobeta está en Calle Castillo S/N, 19443 Cobeta, en la provincia de Guadalajara, dentro del entorno del Alto Tajo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tipo de experiencia propone la home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Propone una escapada rural que combina descanso en apartamentos, gastronomía tradicional, actividades auténticas en el Alto Tajo y espacios para celebraciones, grupos y team building."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <section class="hero" style="--hero-img:url('{{ url_for('static', filename='img/home-hero-1.jpg') }}');">

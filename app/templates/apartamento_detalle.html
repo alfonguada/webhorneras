@@ -3,6 +3,27 @@
 {% block title %}{{ apto.nombre }} - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}{{ apto.subtitulo }} en Las Horneras de Cobeta. {{ apto.m2 }} m², {{ apto.ocupacion }}, desde {{ apto.precio_desde }}€/día.{% endblock %}
 
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Apartment",
+  "name": "{{ apto.nombre }} — Las Horneras de Cobeta",
+  "description": "{{ apto.subtitulo }}",
+  "floorSize": { "@type": "QuantitativeValue", "value": {{ apto.m2 }}, "unitCode": "MTK" },
+  "petsAllowed": {{ 'true' if 'Pet Friendly' in apto.amenities else 'false' }},
+  "containedInPlace": { "@type": "LodgingBusiness", "name": "Las Horneras de Cobeta" },
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ apto.precio_desde }}",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "{{ request.url }}"
+  }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <section class="page-hero">
   <div class="container">
