@@ -3,7 +3,7 @@ import logging
 from flask import Blueprint, Response, abort, current_app, flash, redirect, render_template, url_for
 
 from app.data.apartamentos import APARTAMENTOS, get_apartamento
-from app.forms import ContactoForm, NewsletterForm
+from app.forms import CateringForm, ContactoForm, NewsletterForm
 
 main_bp = Blueprint("main", __name__)
 logger = logging.getLogger(__name__)
@@ -33,9 +33,26 @@ def casa_de_comidas():
     return render_template("casa_de_comidas.html")
 
 
-@main_bp.route("/catering-rural/")
+@main_bp.route("/catering-rural/", methods=["GET", "POST"])
 def catering_rural():
-    return render_template("catering_rural.html")
+    form = CateringForm()
+    if form.validate_on_submit():
+        # TODO: enviar email real (Flask-Mail/SMTP) usando
+        # current_app.config["MAIL_*"] una vez el propietario facilite
+        # credenciales. De momento se registra en el log del servidor.
+        logger.info(
+            "Nueva solicitud de catering: %s <%s> tel:%s — %s el %s para %s comensales. %s",
+            form.nombre.data,
+            form.correo.data,
+            form.telefono.data,
+            dict(form.tipo_evento.choices).get(form.tipo_evento.data, form.tipo_evento.data),
+            form.fecha_evento.data or "(sin fecha indicada)",
+            form.comensales.data,
+            form.mensaje.data,
+        )
+        flash("¡Gracias! Hemos recibido tu solicitud de presupuesto y te contactaremos en breve.", "success")
+        return redirect(url_for("main.catering_rural") + "#presupuesto")
+    return render_template("catering_rural.html", form=form)
 
 
 @main_bp.route("/foodtruck/")

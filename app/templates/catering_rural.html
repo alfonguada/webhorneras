@@ -10,7 +10,7 @@
     <span class="eyebrow" style="color:#E7CBD3;">Las Horneras</span>
     <h1>Catering Rural</h1>
     <p class="lede">El mejor catering rural para tu evento — bodas, comuniones, bautizos y comidas populares con auténtico sabor tradicional.</p>
-    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Solicitar presupuesto</a>
+    <a class="btn btn-accent" href="#presupuesto">Solicitar presupuesto</a>
   </div>
 </section>
 
@@ -43,7 +43,55 @@
       <li>Presupuestos personalizados según número de comensales y tipo de evento</li>
     </ul>
     <p style="margin-top:24px;max-width:64ch;">Las Horneras de Cobeta ofrece una experiencia gastronómica auténtica, cuidando cada detalle para que tu evento se disfrute con tranquilidad, cercanía y sabor rural.</p>
-    <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Solicitar presupuesto</a>
+  </div>
+</section>
+
+<section class="block" id="presupuesto">
+  <div class="container">
+    <div class="two-col" style="align-items:flex-start;">
+      <div>
+        <span class="eyebrow">Presupuesto personalizado</span>
+        <h2>Cuéntanos tu evento</h2>
+        <p>Rellena el formulario con los datos de tu celebración y te enviaremos un presupuesto a medida. También puedes escribirnos por <a href="https://wa.me/{{ config.WHATSAPP_NUMERO }}" target="_blank" rel="noopener" style="text-decoration:underline;">WhatsApp</a> o llamarnos al <a href="tel:{{ config.TELEFONO }}" style="text-decoration:underline;">{{ config.TELEFONO_VISIBLE }}</a>.</p>
+      </div>
+      <form method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="field">
+          {{ form.nombre.label }}
+          {{ form.nombre(placeholder="Tu nombre") }}
+          {% for error in form.nombre.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="field">
+          {{ form.correo.label }}
+          {{ form.correo(placeholder="tucorreo@ejemplo.es") }}
+          {% for error in form.correo.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="field">
+          {{ form.telefono.label }}
+          {{ form.telefono(placeholder="621 240 349") }}
+          {% for error in form.telefono.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="field">
+          {{ form.tipo_evento.label }}
+          {{ form.tipo_evento() }}
+          {% for error in form.tipo_evento.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="field">
+          {{ form.fecha_evento.label }}
+          {{ form.fecha_evento(placeholder="Ej. 14 de junio de 2026") }}
+        </div>
+        <div class="field">
+          {{ form.comensales.label }}
+          {{ form.comensales(placeholder="Ej. 40") }}
+          {% for error in form.comensales.errors %}<div class="errors">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="field">
+          {{ form.mensaje.label }}
+          {{ form.mensaje(placeholder="Cuéntanos más: ubicación, horario, preferencias del menú… (opcional)") }}
+        </div>
+        <button class="btn btn-accent" type="submit">Solicitar presupuesto</button>
+      </form>
+    </div>
   </div>
 </section>
 {% endblock %}
