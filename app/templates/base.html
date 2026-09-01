@@ -57,8 +57,23 @@
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Las Horneras de Cobeta">
       </a>
 
-      <div style="display:flex; align-items:center; gap:14px;">
-        <div class="gtranslate-wrap" id="google_translate_element"></div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <!-- Google Translate real, oculto: solo usamos su <select> internamente -->
+        <div id="google_translate_element" class="goog-te-hidden" aria-hidden="true"></div>
+
+        <div class="lang-switch notranslate" id="lang-switch" translate="no">
+          <button class="lang-switch-btn" id="lang-switch-btn" aria-haspopup="true" aria-expanded="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            <span id="lang-switch-current">ES</span>
+          </button>
+          <ul class="lang-switch-menu" id="lang-switch-menu" hidden>
+            <li><button type="button" data-lang="es">Español</button></li>
+            <li><button type="button" data-lang="en">English</button></li>
+            <li><button type="button" data-lang="fr">Français</button></li>
+            <li><button type="button" data-lang="de">Deutsch</button></li>
+          </ul>
+        </div>
+
         <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -212,7 +227,10 @@
   </script>
 
   <!-- Selector de idioma: equivalente funcional a GTranslate (widget clásico
-       de Google Website Translator). No requiere cuenta ni API key. -->
+       de Google Website Translator). No requiere cuenta ni API key.
+       El widget real de Google se queda oculto; el botón propio de arriba
+       (misma línea visual que el resto de la cabecera) es el que el
+       usuario ve y usa. -->
   <script>
     function googleTranslateElementInit() {
       new google.translate.TranslateElement(
@@ -220,6 +238,50 @@
         'google_translate_element'
       );
     }
+
+    (function () {
+      var btn = document.getElementById('lang-switch-btn');
+      var menu = document.getElementById('lang-switch-menu');
+      var current = document.getElementById('lang-switch-current');
+
+      function closeMenu() { menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+      btn.addEventListener('click', function () {
+        var open = menu.hidden;
+        menu.hidden = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!document.getElementById('lang-switch').contains(e.target)) closeMenu();
+      });
+
+      menu.querySelectorAll('button[data-lang]').forEach(function (item) {
+        item.addEventListener('click', function () {
+          var lang = item.getAttribute('data-lang');
+          current.textContent = lang.toUpperCase();
+          closeMenu();
+
+          // Busca el <select> real que inyecta Google y dispara el cambio.
+          var select = document.querySelector('#google_translate_element select.goog-te-combo');
+          if (select) {
+            select.value = lang;
+            select.dispatchEvent(new Event('change'));
+          }
+
+          // Si el widget de Google aún no ha terminado de cargar,
+          // reintenta un par de veces.
+          var tries = 0;
+          var retry = setInterval(function () {
+            var sel = document.querySelector('#google_translate_element select.goog-te-combo');
+            tries++;
+            if (sel && sel.value !== lang) {
+              sel.value = lang;
+              sel.dispatchEvent(new Event('change'));
+            }
+            if ((sel && sel.value === lang) || tries > 8) clearInterval(retry);
+          }, 400);
+        });
+      });
+    })();
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 

@@ -263,15 +263,37 @@ section.block.alt { background: var(--offwhite); }
 .footer-seo-links a:hover { color: var(--gold); }
 
 /* ---------- selector de idioma (Google Website Translator) ---------- */
-/* El widget clásico de Google no es responsive por sí mismo: limitamos su
-   ancho y lo ocultamos en móvil (queda disponible en el menú lateral). */
-.gtranslate-wrap { max-width: 130px; overflow: hidden; }
-.gtranslate-wrap .goog-te-gadget { font-family: var(--font-body) !important; font-size: 0 !important; }
-.gtranslate-wrap select.goog-te-combo { max-width: 130px; font-size: .78rem; font-family: var(--font-body); }
+/* El widget real de Google (feo por defecto: logo + "Traductor de Google"
+   en dos líneas) se oculta visualmente por completo. Se mantiene en el DOM
+   y funcional -su <select> es lo único que usamos- pero el botón que ve el
+   usuario es el nuestro (.lang-switch), con el mismo estilo que el resto
+   de la cabecera. */
+.goog-te-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
 body > .skiptranslate:first-child { display: none !important; } /* banner superior de Google */
 body { top: 0 !important; }
+
+.lang-switch { position: relative; }
+.lang-switch-btn {
+  display: flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--line);
+  border-radius: 999px; padding: 7px 12px; font-family: var(--font-label); font-size: .76rem;
+  letter-spacing: .04em; color: var(--ink); cursor: pointer;
+}
+.lang-switch-btn:hover { border-color: var(--sage); color: var(--sage); }
+.lang-switch-menu {
+  position: absolute; top: calc(100% + 8px); right: 0; min-width: 150px; list-style: none;
+  margin: 0; padding: 6px; background: var(--white); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: var(--shadow); z-index: 41;
+}
+.lang-switch-menu button {
+  display: block; width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+  padding: 9px 10px; border-radius: 6px; font-family: var(--font-body); font-size: .88rem; color: var(--ink);
+}
+.lang-switch-menu button:hover { background: var(--offwhite); color: var(--wine); }
 @media (max-width: 900px) {
-  .gtranslate-wrap { display: none; }
+  .lang-switch { display: none; }
 }
 
 /* ---------- whatsapp widget ---------- */
@@ -312,4 +334,3 @@ body { top: 0 !important; }
 /* ---------- utils ---------- */
 .text-center { text-align: center; }
 .mt-0 { margin-top: 0; }
-.gtranslate-wrap { display: inline-block; }
