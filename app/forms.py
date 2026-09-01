@@ -44,3 +44,18 @@ class CateringForm(FlaskForm):
         validators=[InputRequired(message="Indica un número aproximado"), NumberRange(min=1, max=2000)],
     )
     mensaje = TextAreaField("Cuéntanos más sobre tu evento", validators=[Optional(), Length(max=4000)])
+
+
+class ReservaMesaForm(FlaskForm):
+    """Formulario de reserva de mesa en la Casa de Comidas."""
+
+    nombre = StringField("Nombre", validators=[DataRequired(), Length(max=120)])
+    correo = StringField("Correo electrónico", validators=[DataRequired(), Email()])
+    telefono = StringField("Teléfono", validators=[DataRequired(), Length(max=30)])
+    fecha = StringField("Fecha", validators=[DataRequired(), Length(max=40)])
+    hora = StringField("Hora", validators=[DataRequired(), Length(max=20)])
+    comensales = IntegerField(
+        "Número de comensales",
+        validators=[InputRequired(message="Indica el número de comensales"), NumberRange(min=1, max=50)],
+    )
+    comentario = TextAreaField("Comentario (alergias, ocasión especial…)", validators=[Optional(), Length(max=2000)])

@@ -15,29 +15,45 @@
 <section class="block">
   <div class="container" style="max-width:78ch;">
     <p>Las horneras eran las mujeres de Cobeta que, generación tras generación, cocían el pan en el horno de leña del pueblo. Con sus manos y el calor del fuego alimentaban a toda una comunidad. Este proyecto — los apartamentos, la casa de comidas, cada rincón de Las Horneras de Cobeta — nace para honrar su memoria y mantener viva la tradición que empezó con ellas.</p>
+  </div>
+</section>
 
-    <div style="margin-top:36px;">
+<section class="block alt">
+  <div class="container two-col" style="align-items:center;">
+    <div class="round-block">
+      <img src="{{ url_for('static', filename='img/historia-horno.jpg') }}" alt="El horno de leña de Las Horneras de Cobeta" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;">
+    </div>
+    <div>
       <span class="eyebrow">La tradición familiar</span>
       <h3>El horno que dio origen a todo</h3>
       <p>El horno de leña que hoy sigue encendido en nuestra <a href="{{ url_for('main.casa_de_comidas') }}">Casa de Comidas</a> no es un elemento decorativo: es el corazón y el origen de todo. Aquí cocían el pan las abuelas del pueblo, las verdaderas horneras de Cobeta. En su honor nace este proyecto, que mantiene viva la tradición del horno de leña y de la cocina hecha con alma, generación tras generación.</p>
     </div>
+  </div>
+</section>
 
-    <div style="margin-top:44px;">
-      <span class="eyebrow">Legado de las horneras</span>
-      <h3>De las horneras a los apartamentos</h3>
-      <p>Cada uno de nuestros cinco apartamentos lleva el nombre de una hornera real, una mujer que dejó su huella en Cobeta y en nuestra familia. Así, su legado sigue vivo en cada estancia, en cada detalle pensado con el mismo cariño con el que ellas amasaban el pan.</p>
+<section class="block">
+  <div class="container" style="max-width:78ch;">
+    <span class="eyebrow">Legado de las horneras</span>
+    <h3>De las horneras a los apartamentos</h3>
+    <p>Cada uno de nuestros cinco apartamentos lleva el nombre de una hornera real, una mujer que dejó su huella en Cobeta y en nuestra familia. Así, su legado sigue vivo en cada estancia, en cada detalle pensado con el mismo cariño con el que ellas amasaban el pan.</p>
+  </div>
+</section>
+
+{% for apto in apartamentos %}
+<section class="block{{ ' alt' if loop.index is even else '' }}">
+  <div class="container two-col" style="align-items:center;{{ 'direction:rtl;' if loop.index is even else '' }}">
+    <div class="round-block" style="{{ 'direction:ltr;' if loop.index is even else '' }}">
+      <img src="{{ url_for('static', filename='img/' ~ apto.imagen) }}" alt="Apartamento {{ apto.nombre }}" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;">
     </div>
-
-    {% for apto in apartamentos %}
-    <div style="margin-top:36px;">
+    <div style="{{ 'direction:ltr;' if loop.index is even else '' }}">
       <span class="eyebrow">{{ apto.nombre|upper }}</span>
       <h3>Historia de {{ apto.nombre }}</h3>
       <p>{{ apto.historia }}</p>
       <a href="{{ url_for('main.apartamento_detalle', slug=apto.slug) }}">Descubre el apartamento {{ apto.nombre }} &rarr;</a>
     </div>
-    {% endfor %}
   </div>
 </section>
+{% endfor %}
 
 <section class="block alt text-center">
   <div class="container">

@@ -1,11 +1,15 @@
 from flask import Flask, render_template
+from flask_mail import Mail
 
 from app.config import Config
+
+mail = Mail()
 
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    mail.init_app(app)
 
     from app.data.apartamentos import APARTAMENTOS
     from app.forms import NewsletterForm

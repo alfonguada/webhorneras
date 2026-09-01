@@ -3,7 +3,8 @@ import logging
 from flask import Blueprint, Response, abort, current_app, flash, redirect, render_template, url_for
 
 from app.data.apartamentos import APARTAMENTOS, get_apartamento
-from app.forms import CateringForm, ContactoForm, NewsletterForm
+from app.emails import enviar_notificacion
+from app.forms import CateringForm, ContactoForm, NewsletterForm, ReservaMesaForm
 
 main_bp = Blueprint("main", __name__)
 logger = logging.getLogger(__name__)
@@ -28,18 +29,42 @@ def apartamento_detalle(slug):
     return render_template("apartamento_detalle.html", apto=apto, otros=otros)
 
 
-@main_bp.route("/casa-de-comidas/")
+@main_bp.route("/casa-de-comidas/", methods=["GET", "POST"])
 def casa_de_comidas():
-    return render_template("casa_de_comidas.html")
+    form = ReservaMesaForm()
+    if form.validate_on_submit():
+        logger.info(
+            "Nueva reserva de mesa: %s <%s> tel:%s — %s a las %s para %s comensales. %s",
+            form.nombre.data,
+            form.correo.data,
+            form.telefono.data,
+            form.fecha.data,
+            form.hora.data,
+            form.comensales.data,
+            form.comentario.data,
+        )
+        enviar_notificacion(
+            asunto=f"Nueva reserva de mesa: {form.nombre.data} ({form.comensales.data} pers.)",
+            cuerpo=(
+                f"Nombre: {form.nombre.data}\n"
+                f"Correo: {form.correo.data}\n"
+                f"Teléfono: {form.telefono.data}\n"
+                f"Fecha: {form.fecha.data}\n"
+                f"Hora: {form.hora.data}\n"
+                f"Comensales: {form.comensales.data}\n"
+                f"Comentario: {form.comentario.data or '(sin comentario)'}"
+            ),
+            responder_a=form.correo.data,
+        )
+        flash("¡Gracias! Hemos recibido tu solicitud de reserva y te confirmaremos en breve.", "success")
+        return redirect(url_for("main.casa_de_comidas") + "#reservar")
+    return render_template("casa_de_comidas.html", form=form)
 
 
 @main_bp.route("/catering-rural/", methods=["GET", "POST"])
 def catering_rural():
     form = CateringForm()
     if form.validate_on_submit():
-        # TODO: enviar email real (Flask-Mail/SMTP) usando
-        # current_app.config["MAIL_*"] una vez el propietario facilite
-        # credenciales. De momento se registra en el log del servidor.
         logger.info(
             "Nueva solicitud de catering: %s <%s> tel:%s — %s el %s para %s comensales. %s",
             form.nombre.data,
@@ -49,6 +74,19 @@ def catering_rural():
             form.fecha_evento.data or "(sin fecha indicada)",
             form.comensales.data,
             form.mensaje.data,
+        )
+        enviar_notificacion(
+            asunto=f"Nueva solicitud de catering: {form.nombre.data} ({form.comensales.data} pers.)",
+            cuerpo=(
+                f"Nombre: {form.nombre.data}\n"
+                f"Correo: {form.correo.data}\n"
+                f"Teléfono: {form.telefono.data}\n"
+                f"Tipo de evento: {dict(form.tipo_evento.choices).get(form.tipo_evento.data, form.tipo_evento.data)}\n"
+                f"Fecha del evento: {form.fecha_evento.data or '(sin fecha indicada)'}\n"
+                f"Comensales: {form.comensales.data}\n"
+                f"Mensaje: {form.mensaje.data or '(sin mensaje)'}"
+            ),
+            responder_a=form.correo.data,
         )
         flash("¡Gracias! Hemos recibido tu solicitud de presupuesto y te contactaremos en breve.", "success")
         return redirect(url_for("main.catering_rural") + "#presupuesto")
@@ -101,16 +139,22 @@ def faq():
 def contacto():
     form = ContactoForm()
     if form.validate_on_submit():
-        # TODO: enviar email real (Flask-Mail/SMTP) usando
-        # current_app.config["MAIL_*"] una vez el propietario facilite
-        # credenciales. De momento se registra en el log del servidor
-        # para no perder ningún envío durante el desarrollo.
         logger.info(
             "Nuevo mensaje de contacto: %s <%s> — %s: %s",
             form.nombre.data,
             form.correo.data,
             form.concepto.data,
             form.contenido.data,
+        )
+        enviar_notificacion(
+            asunto=f"Nuevo mensaje de contacto: {form.nombre.data} — {form.concepto.data or 'Sin asunto'}",
+            cuerpo=(
+                f"Nombre: {form.nombre.data}\n"
+                f"Correo: {form.correo.data}\n"
+                f"Asunto: {form.concepto.data or '(sin asunto)'}\n\n"
+                f"{form.contenido.data}"
+            ),
+            responder_a=form.correo.data,
         )
         flash("Gracias por escribirnos. Te responderemos lo antes posible.", "success")
         return redirect(url_for("main.contacto"))

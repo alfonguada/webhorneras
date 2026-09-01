@@ -1,5 +1,9 @@
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev-cambia-esto-en-produccion")
@@ -18,14 +22,22 @@ class Config:
     INSTAGRAM_URL = "https://www.instagram.com/las.horneras/"
     WHATSAPP_NUMERO = "34621240349"  # formato internacional sin '+' para wa.me
 
-    # --- Integraciones pendientes de credenciales reales del propietario ---
-    # Envío de email del formulario de contacto (Flask-Mail / SMTP)
+    # Envío de email de los formularios (contacto, catering, reserva de mesa)
     MAIL_SERVER = os.environ.get("MAIL_SERVER", "")
     MAIL_PORT = int(os.environ.get("MAIL_PORT", 587))
-    MAIL_USE_TLS = True
+    MAIL_USE_TLS = os.environ.get("MAIL_USE_TLS", "true").lower() == "true"
+    MAIL_USE_SSL = os.environ.get("MAIL_USE_SSL", "false").lower() == "true"
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME", "")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD", "")
-    MAIL_DESTINATARIO = os.environ.get("MAIL_DESTINATARIO", EMAIL_INFO)
+    MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER", MAIL_USERNAME)
+    # Destinatarios de todos los formularios de la web (separados por coma en .env)
+    MAIL_DESTINATARIOS = [
+        d.strip()
+        for d in os.environ.get(
+            "MAIL_DESTINATARIOS", "administracion@lashorneras.com,alfonsomunoz@adaptasystem.com"
+        ).split(",")
+        if d.strip()
+    ]
 
     # Alta en newsletter (API de Mailchimp)
     MAILCHIMP_API_KEY = os.environ.get("MAILCHIMP_API_KEY", "")
