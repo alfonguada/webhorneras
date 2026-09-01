@@ -4,11 +4,11 @@
 {% block meta_description %}La Conchi Foodtruck: cocina tradicional allá donde nos necesites. Eventos privados, fiestas populares, empresas, bodas. Alquiler de foodtruck desde 200€/día.{% endblock %}
 
 {% block content %}
-<section class="page-hero">
+<section class="hero" style="--hero-img:url('{{ url_for('static', filename='img/foodtruck-equipo.jpg') }}');">
   <div class="container">
-    <span class="eyebrow">Los chicos de la Conchi</span>
+    <span class="eyebrow" style="color:#E7CBD3;">Los chicos de la Conchi</span>
     <h1>La Conchi Foodtruck</h1>
-    <p style="max-width:60ch;margin:0 auto;">Llevamos la cocina tradicional allá donde nos necesites. Eventos privados, fiestas populares, empresas, bodas o encuentros de grupo. Sabor auténtico, producto local y recetas de siempre, servidas con cercanía y buen rollo.</p>
+    <p class="lede">Llevamos la cocina tradicional allá donde nos necesites. Eventos privados, fiestas populares, empresas, bodas o encuentros de grupo. Sabor auténtico, producto local y recetas de siempre, servidas con cercanía y buen rollo.</p>
     <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">Contacto</a>
   </div>
 </section>
@@ -23,6 +23,16 @@
     </div>
     <div class="round-block">
       <img src="{{ url_for('static', filename='img/foodtruck-hero.jpg') }}" alt="La Conchi Foodtruck en Cobeta" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;">
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <span class="eyebrow">El equipo</span>
+    <h2>Cocina tradicional allá donde nos necesites</h2>
+    <div class="round-block" style="margin-top:24px;max-width:480px;">
+      <img src="{{ url_for('static', filename='img/foodtruck-equipo-vertical.jpg') }}" alt="El equipo de La Conchi Foodtruck en la Plaza del Castillo de Cobeta" style="width:100%;height:100%;object-fit:cover;aspect-ratio:2/3;">
     </div>
   </div>
 </section>
