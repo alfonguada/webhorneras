@@ -2,6 +2,7 @@
 
 {% block title %}Carta - Las Horneras de Cobeta{% endblock %}
 {% block meta_description %}La carta de la Casa de Comidas de Las Horneras de Cobeta: cocina tradicional al horno de leña, la parrilla y el puchero.{% endblock %}
+{% block body_class %}page-restaurante{% endblock %}
 
 {% block content %}
 <section class="page-hero">
@@ -12,26 +13,57 @@
 </section>
 
 <section class="block">
-  <div class="container" style="max-width:78ch;">
-    <div class="note" style="background:var(--offwhite);border:1px solid var(--line);border-radius:10px;padding:20px 24px;">
-      <p style="margin:0;font-size:.92rem;color:var(--text-soft);">
-        La copia archivada de esta página no conservó los platos de la carta (se cargaban
-        dinámicamente vía el plugin <span class="mono">mp-restaurant-menu</span> y no quedaron
-        en el HTML estático). Pendiente de que el propietario facilite la carta actual para
-        completar esta sección — estructura de ejemplo por categorías a continuación.
-      </p>
+  <div class="container">
+    {% set menus = [
+      ("carta", "Carta", "restaurant_menu", "https://reservas.lashorneras.com/carta_web"),
+      ("asado", "Menú de Asado", "local_fire_department", "https://reservas.lashorneras.com/asado_web"),
+      ("vinos", "Carta de Vinos", "wine_bar", "https://reservas.lashorneras.com/bebidas_web"),
+      ("bebidas", "Bebidas y Postres", "local_cafe", "https://reservas.lashorneras.com/bebidas_web2"),
+      ("llevar", "Para Llevar", "takeout_dining", "https://reservas.lashorneras.com/llevar_web"),
+    ] %}
+
+    <div class="carta-tabs" role="tablist">
+      {% for id, label, icon, url in menus %}
+      <button type="button" class="carta-tab{% if loop.first %} active{% endif %}" data-target="carta-frame-{{ id }}" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}">{{ label }}</button>
+      {% endfor %}
     </div>
 
-    {% for categoria in ["Entrantes", "Asados al horno de leña", "De la parrilla", "Guisos y pucheros", "Postres caseros"] %}
-    <div style="margin-top:36px;">
-      <h3>{{ categoria }}</h3>
-      <p style="color:var(--text-soft);font-size:.9rem;">Platos pendientes de añadir.</p>
+    <div class="carta-frames">
+      {% for id, label, icon, url in menus %}
+      <iframe class="carta-frame{% if loop.first %} active{% endif %}" id="carta-frame-{{ id }}"
+              {% if loop.first %}src="{{ url }}" data-loaded="1"{% endif %} data-src="{{ url }}"
+              title="{{ label }} — Las Horneras" loading="lazy"></iframe>
+      {% endfor %}
     </div>
-    {% endfor %}
 
-    <div class="text-center" style="margin-top:48px;">
+    <p style="font-size:.82rem;color:var(--text-soft);margin-top:18px;">
+      Carta gestionada en tiempo real por el restaurante — los precios y platos se actualizan automáticamente.
+    </p>
+
+    <div class="text-center" style="margin-top:32px;">
       <a class="btn btn-accent" href="{{ url_for('main.contacto') }}">¿Quieres reservar una mesa?</a>
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var tabs = document.querySelectorAll('.carta-tab');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        document.querySelectorAll('.carta-frame').forEach(function (f) { f.classList.remove('active'); });
+
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        var frame = document.getElementById(tab.dataset.target);
+        if (!frame.dataset.loaded) {
+          frame.src = frame.dataset.src;
+          frame.dataset.loaded = '1';
+        }
+        frame.classList.add('active');
+      });
+    });
+  })();
+</script>
 {% endblock %}
