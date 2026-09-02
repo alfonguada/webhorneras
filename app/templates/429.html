@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Demasiados envíos - Las Horneras de Cobeta{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Espera un momento</span>
+    <h1>Has enviado el formulario demasiadas veces</h1>
+    <p>Por seguridad, limitamos el número de envíos en poco tiempo. Espera unos minutos e inténtalo de nuevo, o escríbenos directamente por WhatsApp o teléfono.</p>
+    <a class="btn btn-primary" href="{{ url_for('main.index') }}">Volver al inicio</a>
+  </div>
+</section>
+{% endblock %}

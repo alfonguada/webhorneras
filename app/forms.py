@@ -12,6 +12,7 @@ class ContactoForm(FlaskForm):
     contenido = TextAreaField(
         "¿En qué podemos ayudarte?", validators=[DataRequired(), Length(max=4000)]
     )
+    empresa = StringField("Empresa", validators=[Optional(), Length(max=200)])  # honeypot
 
 
 class NewsletterForm(FlaskForm):
@@ -44,6 +45,7 @@ class CateringForm(FlaskForm):
         validators=[InputRequired(message="Indica un número aproximado"), NumberRange(min=1, max=2000)],
     )
     mensaje = TextAreaField("Cuéntanos más sobre tu evento", validators=[Optional(), Length(max=4000)])
+    empresa = StringField("Empresa", validators=[Optional(), Length(max=200)])  # honeypot
 
 
 class ReservaMesaForm(FlaskForm):
@@ -59,3 +61,4 @@ class ReservaMesaForm(FlaskForm):
         validators=[InputRequired(message="Indica el número de comensales"), NumberRange(min=1, max=50)],
     )
     comentario = TextAreaField("Comentario (alergias, ocasión especial…)", validators=[Optional(), Length(max=2000)])
+    empresa = StringField("Empresa", validators=[Optional(), Length(max=200)])  # honeypot

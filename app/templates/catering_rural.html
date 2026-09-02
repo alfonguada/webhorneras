@@ -103,6 +103,10 @@
       </div>
       <form method="post" novalidate>
         {{ form.hidden_tag() }}
+        <div class="field hp-field" aria-hidden="true" tabindex="-1">
+          {{ form.empresa.label }}
+          {{ form.empresa(autocomplete="off", tabindex="-1") }}
+        </div>
         <div class="field">
           {{ form.nombre.label }}
           {{ form.nombre(placeholder="Tu nombre") }}

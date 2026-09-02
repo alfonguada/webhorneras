@@ -2,6 +2,7 @@ import logging
 
 from flask import Blueprint, Response, abort, current_app, flash, redirect, render_template, url_for
 
+from app import limiter
 from app.data.apartamentos import APARTAMENTOS, get_apartamento
 from app.emails import enviar_notificacion
 from app.forms import CateringForm, ContactoForm, NewsletterForm, ReservaMesaForm
@@ -30,9 +31,14 @@ def apartamento_detalle(slug):
 
 
 @main_bp.route("/casa-de-comidas/", methods=["GET", "POST"])
+@limiter.limit("5/minute;20/hour", methods=["POST"])
 def casa_de_comidas():
     form = ReservaMesaForm()
     if form.validate_on_submit():
+        if form.empresa.data:
+            # Honeypot relleno -> bot. Fingimos éxito sin enviar nada.
+            flash("¡Gracias! Hemos recibido tu solicitud de reserva y te confirmaremos en breve.", "success")
+            return redirect(url_for("main.casa_de_comidas") + "#reservar")
         logger.info(
             "Nueva reserva de mesa: %s <%s> tel:%s — %s a las %s para %s comensales. %s",
             form.nombre.data,
@@ -62,9 +68,13 @@ def casa_de_comidas():
 
 
 @main_bp.route("/catering-rural/", methods=["GET", "POST"])
+@limiter.limit("5/minute;20/hour", methods=["POST"])
 def catering_rural():
     form = CateringForm()
     if form.validate_on_submit():
+        if form.empresa.data:
+            flash("¡Gracias! Hemos recibido tu solicitud de presupuesto y te contactaremos en breve.", "success")
+            return redirect(url_for("main.catering_rural") + "#presupuesto")
         logger.info(
             "Nueva solicitud de catering: %s <%s> tel:%s — %s el %s para %s comensales. %s",
             form.nombre.data,
@@ -136,9 +146,13 @@ def faq():
 
 
 @main_bp.route("/contacto/", methods=["GET", "POST"])
+@limiter.limit("5/minute;20/hour", methods=["POST"])
 def contacto():
     form = ContactoForm()
     if form.validate_on_submit():
+        if form.empresa.data:
+            flash("Gracias por escribirnos. Te responderemos lo antes posible.", "success")
+            return redirect(url_for("main.contacto"))
         logger.info(
             "Nuevo mensaje de contacto: %s <%s> — %s: %s",
             form.nombre.data,
@@ -162,6 +176,7 @@ def contacto():
 
 
 @main_bp.route("/newsletter/", methods=["POST"])
+@limiter.limit("5/minute;20/hour")
 def newsletter():
     form = NewsletterForm()
     if form.validate_on_submit():

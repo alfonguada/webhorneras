@@ -20,6 +20,12 @@ def enviar_notificacion(asunto, cuerpo, responder_a=None):
         logger.warning("Email no enviado (SMTP sin configurar): %s", asunto)
         return False
 
+    # Los campos de formulario llegan directos al asunto del email; un envío
+    # con saltos de línea podría intentar inyectar cabeceras (Bcc, etc.).
+    # Flask-Mail ya lo rechaza con BadHeaderError, pero preferimos sanear
+    # aquí para no perder silenciosamente la notificación.
+    asunto = asunto.replace("\r", " ").replace("\n", " ")
+
     try:
         msg = Message(subject=asunto, recipients=destinatarios, body=cuerpo)
         if responder_a:
