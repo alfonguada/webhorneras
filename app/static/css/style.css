@@ -69,8 +69,8 @@ body {
 
 h1, h2, h3, h4 { color: var(--ink); margin: 0 0 .5em; line-height: 1.15; }
 h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.75rem); }
-h2 { font-family: var(--font-heading); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.4rem); }
-h3 { font-family: var(--font-heading); font-weight: 500; font-size: 1.35rem; }
+h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.4rem); }
+h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; }
 h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: .04em; color: var(--sage); }
 
 p { margin: 0 0 1.1em; }
