@@ -5,7 +5,7 @@ from flask import Blueprint, Response, abort, current_app, flash, redirect, rend
 from app import limiter
 from app.data.apartamentos import APARTAMENTOS, get_apartamento
 from app.emails import enviar_notificacion
-from app.forms import CateringForm, ContactoForm, NewsletterForm, ReservaMesaForm
+from app.forms import CateringForm, ContactoForm, NewsletterForm
 
 main_bp = Blueprint("main", __name__)
 logger = logging.getLogger(__name__)
@@ -30,41 +30,9 @@ def apartamento_detalle(slug):
     return render_template("apartamento_detalle.html", apto=apto, otros=otros)
 
 
-@main_bp.route("/casa-de-comidas/", methods=["GET", "POST"])
-@limiter.limit("5/minute;20/hour", methods=["POST"])
+@main_bp.route("/casa-de-comidas/")
 def casa_de_comidas():
-    form = ReservaMesaForm()
-    if form.validate_on_submit():
-        if form.empresa.data:
-            # Honeypot relleno -> bot. Fingimos éxito sin enviar nada.
-            flash("¡Gracias! Hemos recibido tu solicitud de reserva y te confirmaremos en breve.", "success")
-            return redirect(url_for("main.casa_de_comidas") + "#reservar")
-        logger.info(
-            "Nueva reserva de mesa: %s <%s> tel:%s — %s a las %s para %s comensales. %s",
-            form.nombre.data,
-            form.correo.data,
-            form.telefono.data,
-            form.fecha.data,
-            form.hora.data,
-            form.comensales.data,
-            form.comentario.data,
-        )
-        enviar_notificacion(
-            asunto=f"Nueva reserva de mesa: {form.nombre.data} ({form.comensales.data} pers.)",
-            cuerpo=(
-                f"Nombre: {form.nombre.data}\n"
-                f"Correo: {form.correo.data}\n"
-                f"Teléfono: {form.telefono.data}\n"
-                f"Fecha: {form.fecha.data}\n"
-                f"Hora: {form.hora.data}\n"
-                f"Comensales: {form.comensales.data}\n"
-                f"Comentario: {form.comentario.data or '(sin comentario)'}"
-            ),
-            responder_a=form.correo.data,
-        )
-        flash("¡Gracias! Hemos recibido tu solicitud de reserva y te confirmaremos en breve.", "success")
-        return redirect(url_for("main.casa_de_comidas") + "#reservar")
-    return render_template("casa_de_comidas.html", form=form)
+    return render_template("casa_de_comidas.html")
 
 
 @main_bp.route("/catering-rural/", methods=["GET", "POST"])

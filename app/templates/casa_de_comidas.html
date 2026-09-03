@@ -94,57 +94,14 @@
   </div>
 </section>
 
-<section class="block" id="reservar">
+<section class="block alt text-center" id="reservar">
   <div class="container">
-    <div class="two-col" style="align-items:flex-start;">
-      <div>
-        <span class="eyebrow">Reserva tu mesa</span>
-        <h2>¿Quieres reservar una mesa?</h2>
-        <p>Rellena el formulario y te confirmaremos la reserva. También puedes preguntarnos directamente por <a href="https://wa.me/{{ config.WHATSAPP_NUMERO }}" target="_blank" rel="noopener" style="text-decoration:underline;">WhatsApp</a> o llamando al <a href="tel:{{ config.TELEFONO }}" style="text-decoration:underline;">{{ config.TELEFONO_VISIBLE }}</a> — te atendemos encantados.</p>
-        <p style="margin-top:24px;"><a class="btn btn-outline" href="{{ url_for('main.carta') }}">Ver la carta</a></p>
-      </div>
-      <form method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <div class="field hp-field" aria-hidden="true" tabindex="-1">
-          {{ form.empresa.label }}
-          {{ form.empresa(autocomplete="off", tabindex="-1") }}
-        </div>
-        <div class="field">
-          {{ form.nombre.label }}
-          {{ form.nombre(placeholder="Tu nombre") }}
-          {% for error in form.nombre.errors %}<div class="errors">{{ error }}</div>{% endfor %}
-        </div>
-        <div class="field">
-          {{ form.correo.label }}
-          {{ form.correo(placeholder="tucorreo@ejemplo.es") }}
-          {% for error in form.correo.errors %}<div class="errors">{{ error }}</div>{% endfor %}
-        </div>
-        <div class="field">
-          {{ form.telefono.label }}
-          {{ form.telefono(placeholder="621 240 349") }}
-          {% for error in form.telefono.errors %}<div class="errors">{{ error }}</div>{% endfor %}
-        </div>
-        <div class="field">
-          {{ form.fecha.label }}
-          {{ form.fecha(placeholder="Ej. 14 de junio de 2026") }}
-          {% for error in form.fecha.errors %}<div class="errors">{{ error }}</div>{% endfor %}
-        </div>
-        <div class="field">
-          {{ form.hora.label }}
-          {{ form.hora(placeholder="Ej. 14:00") }}
-          {% for error in form.hora.errors %}<div class="errors">{{ error }}</div>{% endfor %}
-        </div>
-        <div class="field">
-          {{ form.comensales.label }}
-          {{ form.comensales(placeholder="Ej. 4") }}
-          {% for error in form.comensales.errors %}<div class="errors">{{ error }}</div>{% endfor %}
-        </div>
-        <div class="field">
-          {{ form.comentario.label }}
-          {{ form.comentario(placeholder="Alergias, ocasión especial… (opcional)") }}
-        </div>
-        <button class="btn btn-accent" type="submit">Reservar mesa</button>
-      </form>
+    <span class="eyebrow">Reserva tu mesa</span>
+    <h2>¿Quieres reservar una mesa?</h2>
+    <p>Escríbenos por <a href="https://wa.me/{{ config.WHATSAPP_NUMERO }}" target="_blank" rel="noopener" style="text-decoration:underline;">WhatsApp</a> o llámanos al <a href="tel:{{ config.TELEFONO }}" style="text-decoration:underline;">{{ config.TELEFONO_VISIBLE }}</a> — te atendemos encantados.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
+      <a class="btn btn-outline" href="{{ url_for('main.carta') }}">Ver la carta</a>
+      <a class="btn btn-accent" style="background:#25D366;" href="https://wa.me/{{ config.WHATSAPP_NUMERO }}" target="_blank" rel="noopener">Reservar por WhatsApp</a>
     </div>
   </div>
 </section>
