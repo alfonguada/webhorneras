@@ -11,6 +11,14 @@ main_bp = Blueprint("main", __name__)
 logger = logging.getLogger(__name__)
 
 
+# Ruta de pruebas, sin enlazar desde ningún menú ni incluida en el
+# sitemap — prototipo de visor 3D de platos (Three.js), solo para uso
+# interno mientras se decide si se desarrolla como función real.
+@main_bp.route("/laboratorio/visor-plato/")
+def lab_visor_3d():
+    return render_template("lab/visor_3d.html")
+
+
 @main_bp.route("/")
 def index():
     return render_template("index.html", apartamentos=APARTAMENTOS)

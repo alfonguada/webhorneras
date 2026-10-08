@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Laboratorio — Visor 3D de platos</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #16140f; overflow: hidden; font-family: "Helvetica Neue", Arial, sans-serif; }
+    canvas { display: block; touch-action: none; }
+    .hud {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 18px 22px; pointer-events: none; color: #f1ece0;
+    }
+    .hud h1 { font-size: .95rem; font-weight: 600; margin: 0 0 4px; letter-spacing: .02em; }
+    .hud p { font-size: .78rem; margin: 0; opacity: .7; max-width: 32ch; }
+    .badge {
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .08em;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px; padding: 5px 12px; pointer-events: none;
+    }
+    #loading {
+      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #f1ece0; font-size: .85rem; opacity: .7; z-index: 5; transition: opacity .4s;
+    }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <div>
+      <h1>Visor 3D — prueba de concepto</h1>
+      <p>Potaje de Las Horneras · arrastra para girar, rueda para hacer zoom</p>
+    </div>
+    <span class="badge">Solo para pruebas internas</span>
+  </div>
+  <div id="loading">Cargando el bol…</div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x16140f);
+
+    const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 50);
+    camera.position.set(0, 2.1, 2.6);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 0.25, 0);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 1.6;
+    controls.maxDistance = 5;
+    controls.maxPolarAngle = Math.PI / 2.05;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.6;
+    controls.update();
+
+    // --- Iluminación ---
+    scene.add(new THREE.HemisphereLight(0xfff2e0, 0x201810, 0.65));
+    const key = new THREE.DirectionalLight(0xfff4e3, 1.5);
+    key.position.set(2.5, 4, 2);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0xffe6c0, 0.4);
+    fill.position.set(-3, 1.5, -2);
+    scene.add(fill);
+
+    // --- Mesa / mantel base ---
+    const tableGeo = new THREE.CircleGeometry(2.6, 64);
+    const tableMat = new THREE.MeshStandardMaterial({ color: 0x3a2f22, roughness: 0.95 });
+    const table = new THREE.Mesh(tableGeo, tableMat);
+    table.rotation.x = -Math.PI / 2;
+    scene.add(table);
+
+    // --- Bol de barro (perfil revolucionado) ---
+    const profile = [
+      new THREE.Vector2(0, 0),
+      new THREE.Vector2(0.34, 0),
+      new THREE.Vector2(0.78, 0.07),
+      new THREE.Vector2(1.08, 0.22),
+      new THREE.Vector2(1.22, 0.34),
+      new THREE.Vector2(1.28, 0.40),
+      new THREE.Vector2(1.24, 0.435),
+      new THREE.Vector2(1.14, 0.42),
+    ];
+    const bowlGeo = new THREE.LatheGeometry(profile, 96);
+    const bowlMat = new THREE.MeshStandardMaterial({ color: 0xb5551f, roughness: 0.55, metalness: 0.05 });
+    const bowl = new THREE.Mesh(bowlGeo, bowlMat);
+    scene.add(bowl);
+
+    // Interior del bol (cara interna visible, mismo tono algo más oscuro)
+    const innerMat = new THREE.MeshStandardMaterial({ color: 0x9c4418, roughness: 0.6, side: THREE.BackSide });
+    const inner = new THREE.Mesh(bowlGeo, innerMat);
+    scene.add(inner);
+
+    // --- Textura del guiso (foto real recortada en círculo) ---
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      "{{ url_for('static', filename='img/3d/plato-textura.png') }}",
+      function (tex) {
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const foodGeo = new THREE.CircleGeometry(1.08, 64);
+        const foodMat = new THREE.MeshStandardMaterial({ map: tex, transparent: true, roughness: 0.75 });
+        const food = new THREE.Mesh(foodGeo, foodMat);
+        food.rotation.x = -Math.PI / 2;
+        food.position.y = 0.305;
+        scene.add(food);
+        document.getElementById('loading').style.opacity = '0';
+        setTimeout(() => document.getElementById('loading').remove(), 500);
+      },
+      undefined,
+      function () {
+        document.getElementById('loading').textContent = 'No se pudo cargar la textura del plato.';
+      }
+    );
+
+    window.addEventListener('resize', function () {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
